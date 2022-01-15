@@ -6,15 +6,21 @@ import Button from '@material-ui/core//Button';
 import logo from '../../assets/logo.svg';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   logoButton: {
     padding: 0,
     '&:hover': { backgroundColor: 'transparent' },
   },
   logoImg: {
     height: '8em',
+    [theme.breakpoints.down('md')]: {
+      height: '7em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: '5.5em',
+    },
   },
-});
+}));
 
 const Logo = ({ navigationHandler }) => {
   const classes = useStyles();

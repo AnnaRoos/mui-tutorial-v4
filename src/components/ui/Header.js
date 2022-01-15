@@ -5,24 +5,34 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import CTAButton from './CTAButton';
+import CTAButton from '../buttons/CTAButton';
 import ElevationScroll from './ElevationScroll';
-import Logo from './Logo';
-import Navigation from './Navigation';
-import TabMenu from './TabMenu';
+import Logo from '../images/Logo';
+import Navigation from '../navigation/TabNavigation';
+import TabMenu from '../navigation/TabMenu';
+
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
 import { pages } from '../../config/pageConfig';
-import { theme } from './Theme';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
     marginBottom: '3em',
+    [theme.breakpoints.down('md')]: {
+      marginBottom: '2em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: '1.25em',
+    },
   },
-});
+}));
 
 const Header = () => {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -66,7 +76,38 @@ const Header = () => {
           setValue(index);
         }
       });
+    pages
+      .filter((page) => (page.menuItem ? page : null))
+      .forEach((page, index) => {
+        if (window.location.pathname === page.path && value !== 1) {
+          setValue(1);
+          setSelectedIndex(index);
+        }
+      });
   }, [value]);
+
+  const tabs = (
+    <>
+      <Navigation
+        anchorEl={anchorEl}
+        openMenuHandler={openMenuHandler}
+        navigationHandler={navigationHandler}
+        value={value}
+      />
+      <CTAButton position={{ margin: '0 50px 0 25px' }} />
+      <TabMenu
+        anchorEl={anchorEl}
+        closeMenuHandler={closeMenuHandler}
+        id="services-menu"
+        navigationHandler={navigationHandler}
+        open={open}
+        openMenuHandler={openMenuHandler}
+        selectedIndex={selectedIndex}
+        selectMenuItemhandler={selectMenuItemhandler}
+        value={value}
+      />
+    </>
+  );
 
   return (
     <>
@@ -74,24 +115,7 @@ const Header = () => {
         <AppBar>
           <Toolbar disableGutters>
             <Logo navigationHandler={navigationHandler} />
-            <Navigation
-              navigationHandler={navigationHandler}
-              value={value}
-              anchorEl={anchorEl}
-              openMenuHandler={openMenuHandler}
-            />
-            <CTAButton position={{ margin: '0 50px 0 25px' }} />
-            <TabMenu
-              id="services"
-              anchorEl={anchorEl}
-              open={open}
-              selectedIndex={selectedIndex}
-              value={value}
-              closeMenuHandler={closeMenuHandler}
-              openMenuHandler={openMenuHandler}
-              navigationHandler={navigationHandler}
-              selectMenuItemhandler={selectMenuItemhandler}
-            />
+            {matches || tabs}
           </Toolbar>
         </AppBar>
       </ElevationScroll>

@@ -1,10 +1,16 @@
-import { grey } from '@material-ui/core/colors';
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core';
 import { createTheme } from '@material-ui/core/styles';
+import { grey } from '@material-ui/core/colors';
+
+const createMuiTheme =
+  process.env.NODE_ENV === 'production'
+    ? createTheme
+    : unstable_createMuiStrictModeTheme;
 
 const arcBlue = '#0B72B9';
 const arcOrange = '#FFBA60';
 
-export const theme = createTheme({
+export const theme = createMuiTheme({
   palette: {
     common: {
       arcBlue: arcBlue,

@@ -6,9 +6,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import { pages } from '../../config/pageConfig';
 import { makeStyles } from '@material-ui/styles';
-import { theme } from './Theme';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   menu: {
     backgroundColor: theme.palette.common.arcBlue,
     color: theme.palette.common.white,
@@ -21,18 +20,20 @@ const useStyles = makeStyles({
       opacity: 1,
     },
   },
-});
+}));
 
-const TabMenu = ({
-  id,
-  anchorEl,
-  open,
-  closeMenuHandler,
-  navigationHandler,
-  selectMenuItemhandler,
-  selectedIndex,
-  value,
-}) => {
+const TabMenu = React.forwardRef((props, ref) => {
+  const {
+    anchorEl,
+    closeMenuHandler,
+    id,
+    navigationHandler,
+    open,
+    selectedIndex,
+    selectMenuItemhandler,
+    value,
+  } = props;
+
   const classes = useStyles();
 
   const menuItems = pages
@@ -62,13 +63,14 @@ const TabMenu = ({
       anchorEl={anchorEl}
       classes={{ paper: classes.menu }}
       elevation={0}
+      keepMounted
+      MenuListProps={{ onMouseLeave: closeMenuHandler }}
       open={open}
       onClose={closeMenuHandler}
-      MenuListProps={{ onMouseLeave: closeMenuHandler }}
     >
       {menuItems}
     </Menu>
   );
-};
+});
 
 export default TabMenu;

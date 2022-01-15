@@ -7,9 +7,8 @@ import Tab from '@material-ui/core/Tab';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { pages } from '../../config/pageConfig';
-import { theme } from './Theme';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   tab: {
     ...theme.typography.tab,
     minWidth: 10,
@@ -19,13 +18,13 @@ const useStyles = makeStyles({
   tabs: {
     marginLeft: 'auto',
   },
-});
+}));
 
 const Navigation = ({
-  navigationHandler,
-  value,
   anchorEl,
+  navigationHandler,
   openMenuHandler,
+  value,
 }) => {
   const classes = useStyles();
 
@@ -36,7 +35,7 @@ const Navigation = ({
         return (
           <Tab
             className={classes.tab}
-            aria-owns={anchorEl ? 'services' : undefined}
+            aria-controls={anchorEl ? 'services-menu' : undefined}
             aria-haspopup={anchorEl ? true : undefined}
             onMouseOver={(event) => openMenuHandler(event)}
             label={page.title}
