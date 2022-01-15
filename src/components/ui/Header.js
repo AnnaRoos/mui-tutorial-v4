@@ -27,14 +27,21 @@ const Header = () => {
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const navigationHandler = (event, newValue) => {
+    const menuItemsIds = pages
+      .filter((page) => (page.menuItem ? page : null))
+      .map((page) => `menuItem-${page.title}`);
     if (event.target.id === 'logo') {
       setValue(0);
+    } else if (menuItemsIds.includes(event.target.id)) {
+      setValue(1);
     } else {
       setValue(newValue);
     }
   };
+
   const openMenuHandler = (event) => {
     setAnchorEl(event.currentTarget);
     setOpen(true);
@@ -45,15 +52,21 @@ const Header = () => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    pages.forEach((page, index) => {
-      if (window.location.pathname === page.path && value !== index) {
-        setValue(index);
-      }
-    });
-  }, [value]);
+  const selectMenuItemhandler = (event, index) => {
+    setAnchorEl(null);
+    setOpen(false);
+    setSelectedIndex(index);
+  };
 
-  const menuOptions = ['Custom SoftWare', 'Mobile Apps', 'Websites'];
+  useEffect(() => {
+    pages
+      .filter((page) => (page.tabItem ? page : null))
+      .forEach((page, index) => {
+        if (window.location.pathname === page.path && value !== index) {
+          setValue(index);
+        }
+      });
+  }, [value]);
 
   return (
     <>
@@ -71,10 +84,13 @@ const Header = () => {
             <TabMenu
               id="services"
               anchorEl={anchorEl}
-              options={menuOptions}
               open={open}
-              openMenuHandler={openMenuHandler}
+              selectedIndex={selectedIndex}
+              value={value}
               closeMenuHandler={closeMenuHandler}
+              openMenuHandler={openMenuHandler}
+              navigationHandler={navigationHandler}
+              selectMenuItemhandler={selectMenuItemhandler}
             />
           </Toolbar>
         </AppBar>

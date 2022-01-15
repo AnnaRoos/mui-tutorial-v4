@@ -29,34 +29,34 @@ const Navigation = ({
 }) => {
   const classes = useStyles();
 
-  const pageTabs = pages.slice(0, 5);
-
-  const navigationTabs = pageTabs.map((page) => {
-    if (page.title === 'Services') {
-      return (
-        <Tab
-          className={classes.tab}
-          aria-owns={anchorEl ? 'services' : undefined}
-          aria-haspopup={anchorEl ? true : undefined}
-          onClick={(event) => openMenuHandler(event)}
-          label={page.title}
-          key={page.title}
-          component={Link}
-          to={page.path}
-        />
-      );
-    } else {
-      return (
-        <Tab
-          className={classes.tab}
-          label={page.title}
-          key={page.title}
-          component={Link}
-          to={page.path}
-        />
-      );
-    }
-  });
+  const navigationTabs = pages
+    .filter((page) => (page.tabItem ? page : null))
+    .map((page) => {
+      if (page.title === 'Services') {
+        return (
+          <Tab
+            className={classes.tab}
+            aria-owns={anchorEl ? 'services' : undefined}
+            aria-haspopup={anchorEl ? true : undefined}
+            onMouseOver={(event) => openMenuHandler(event)}
+            label={page.title}
+            key={page.title}
+            component={Link}
+            to={page.path}
+          />
+        );
+      } else {
+        return (
+          <Tab
+            className={classes.tab}
+            label={page.title}
+            key={page.title}
+            component={Link}
+            to={page.path}
+          />
+        );
+      }
+    });
 
   return (
     <Tabs
