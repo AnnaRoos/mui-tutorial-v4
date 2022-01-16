@@ -1,5 +1,12 @@
 export const pages = [
-  { title: 'Home', path: '/', tabItem: true, drawerItem: true, activeIndex: 0 },
+  {
+    title: 'Home',
+    path: '/',
+    tabItem: true,
+    drawerItem: true,
+    activeIndex: 0,
+    footerBox: 1,
+  },
   {
     title: 'Services',
     path: '/services',
@@ -9,6 +16,7 @@ export const pages = [
     drawerItem: true,
     activeIndex: 1,
     selectedIndex: 0,
+    footerBox: 2,
   },
   {
     title: 'The Revolution',
@@ -16,6 +24,7 @@ export const pages = [
     tabItem: true,
     drawerItem: true,
     activeIndex: 2,
+    footerBox: 3,
   },
   {
     title: 'About Us',
@@ -23,6 +32,7 @@ export const pages = [
     tabItem: true,
     drawerItem: true,
     activeIndex: 3,
+    footerBox: 4,
   },
   {
     title: 'Contact Us',
@@ -30,6 +40,7 @@ export const pages = [
     tabItem: true,
     drawerItem: true,
     activeIndex: 4,
+    footerBox: 5,
   },
   {
     title: 'Custom Software',
@@ -37,6 +48,7 @@ export const pages = [
     menuItem: true,
     activeIndex: 1,
     selectedIndex: 1,
+    footerBox: 2,
   },
   {
     title: 'Mobile Apps',
@@ -44,6 +56,7 @@ export const pages = [
     menuItem: true,
     activeIndex: 1,
     selectedIndex: 2,
+    footerBox: 2,
   },
   {
     title: 'Websites',
@@ -51,6 +64,13 @@ export const pages = [
     menuItem: true,
     activeIndex: 1,
     selectedIndex: 3,
+    footerBox: 2,
   },
   { title: 'Free Estimate', path: '/estimate', drawerItem: true },
+  { title: 'Vision', path: '/vision', footerBox: 3 },
+  { title: 'Technology', path: '/technology', footerBox: 3 },
+  { title: 'Process', path: '/process', footerBox: 3 },
+  { title: 'Mission Statement', path: '/mission', footerBox: 4 },
+  { title: 'History', path: '/history', footerBox: 4 },
+  { title: 'Team', path: '/team', footerBox: 4 },
 ];
