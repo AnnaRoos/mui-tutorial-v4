@@ -11,6 +11,7 @@ import { pages } from '../../config/pageConfig';
 const useStyles = makeStyles((theme) => ({
   tab: {
     ...theme.typography.tab,
+
     minWidth: 10,
     marginLeft: '25px',
     '&.Mui-selected': {},
@@ -20,41 +21,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navigation = ({
-  anchorEl,
-  navigationHandler,
-  openMenuHandler,
-  value,
-}) => {
+const Navigation = ({ navigationHandler, tabMenuOptions, value }) => {
   const classes = useStyles();
 
   const navigationTabs = pages
     .filter((page) => (page.tabItem ? page : null))
     .map((page) => {
-      if (page.title === 'Services') {
-        return (
-          <Tab
-            className={classes.tab}
-            aria-controls={anchorEl ? 'services-menu' : undefined}
-            aria-haspopup={anchorEl ? true : undefined}
-            onMouseOver={(event) => openMenuHandler(event)}
-            label={page.title}
-            key={page.title}
-            component={Link}
-            to={page.path}
-          />
-        );
-      } else {
-        return (
-          <Tab
-            className={classes.tab}
-            label={page.title}
-            key={page.title}
-            component={Link}
-            to={page.path}
-          />
-        );
-      }
+      return (
+        <Tab
+          className={classes.tab}
+          component={Link}
+          key={`${page.title}-tabItem`}
+          label={page.title}
+          to={page.path}
+          aria-owns={page.attachMenu ? tabMenuOptions.ariaOwns : undefined}
+          aria-haspopup={page.attachMenu ? tabMenuOptions.ariaOwns : undefined}
+          onMouseOver={page.attachMenu ? tabMenuOptions.onMouseOver : undefined}
+        />
+      );
     });
 
   return (

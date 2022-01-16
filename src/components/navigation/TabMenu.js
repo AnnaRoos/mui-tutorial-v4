@@ -41,16 +41,15 @@ const TabMenu = React.forwardRef((props, ref) => {
     .map((page, index) => {
       return (
         <MenuItem
-          id={`menuItem-${page.title}`}
           classes={{ root: classes.menuItem }}
-          key={page.title}
+          component={Link}
+          key={`${page.title}-menuItem`}
           onClick={(event) => {
             selectMenuItemhandler(event, index);
-            navigationHandler(event);
+            navigationHandler(event, page.activeIndex);
           }}
-          component={Link}
-          to={page.path}
           selected={index === selectedIndex && value === 1}
+          to={page.path}
         >
           {page.title}
         </MenuItem>
@@ -59,14 +58,15 @@ const TabMenu = React.forwardRef((props, ref) => {
 
   return (
     <Menu
-      id={id}
       anchorEl={anchorEl}
       classes={{ paper: classes.menu }}
+      style={{ zIndex: 1302 }}
       elevation={0}
+      id={id}
       keepMounted
       MenuListProps={{ onMouseLeave: closeMenuHandler }}
-      open={open}
       onClose={closeMenuHandler}
+      open={open}
     >
       {menuItems}
     </Menu>

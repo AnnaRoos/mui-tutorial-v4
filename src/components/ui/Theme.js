@@ -1,6 +1,5 @@
 import { unstable_createMuiStrictModeTheme } from '@material-ui/core';
 import { createTheme } from '@material-ui/core/styles';
-import { grey } from '@material-ui/core/colors';
 
 const createMuiTheme =
   process.env.NODE_ENV === 'production'
@@ -29,7 +28,6 @@ export const theme = createMuiTheme({
       fontSize: '1rem',
       fontWeight: 700,
       textTransform: 'none',
-      color: grey[300],
     },
     estimate: {
       fontFamily: 'Pacifico',

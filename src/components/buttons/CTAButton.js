@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 
@@ -14,10 +15,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CTAButton = ({ position }) => {
+const CTAButton = ({ navigationHandler, position }) => {
   const classes = useStyles(position);
   return (
-    <Button className={classes.ctaButton} variant="contained" color="secondary">
+    <Button
+      className={classes.ctaButton}
+      component={Link}
+      onClick={(event) => navigationHandler(event)}
+      to={'/estimate'}
+      variant="contained"
+      color="secondary"
+    >
       Free Estimate
     </Button>
   );
