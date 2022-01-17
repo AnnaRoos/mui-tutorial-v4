@@ -1,9 +1,13 @@
 import React from 'react';
 
+import Hidden from '@material-ui/core/Hidden';
+
 import { makeStyles } from '@material-ui/core/styles';
 
-import footerAdornment from '../../assets/footerAdornment.svg';
 import FooterNavigation from '../navigation/FooterNavigation';
+import SocialMedia from '../images/SocialMedia';
+
+import footerAdornment from '../../assets/footerAdornment.svg';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -28,16 +32,20 @@ const Footer = ({ navigationHandler, selectedMenuItemHandler }) => {
   const classes = useStyles();
   return (
     <footer className={classes.footer}>
-      <FooterNavigation
-        boxes={5}
-        navigationHandler={navigationHandler}
-        selectedMenuItemHandler={selectedMenuItemHandler}
-      />
+      <Hidden mdDown>
+        <FooterNavigation
+          boxes={5}
+          navigationHandler={navigationHandler}
+          selectedMenuItemHandler={selectedMenuItemHandler}
+        />
+      </Hidden>
+
       <img
         alt="black decorative slash"
         className={classes.adornment}
         src={footerAdornment}
       />
+      <SocialMedia />
     </footer>
   );
 };
