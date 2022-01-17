@@ -13,13 +13,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FooterNavigation = ({ boxes }) => {
+const FooterNavigation = ({
+  boxes,
+  navigationHandler,
+  selectedMenuItemHandler,
+}) => {
   const classes = useStyles();
 
   const footerBoxes = [...Array(boxes)].map((_, index) => {
     return (
-      <FooterLinkBox key={`linkbox-${index}`}>
-        <FooterLinks box={index} />
+      <FooterLinkBox key={`linkbox-${index + 1}`}>
+        <FooterLinks
+          box={index + 1}
+          navigationHandler={navigationHandler}
+          selectedMenuItemHandler={selectedMenuItemHandler}
+        />
       </FooterLinkBox>
     );
   });
@@ -30,7 +38,7 @@ const FooterNavigation = ({ boxes }) => {
       container
       direction="row"
       justifyContent="center"
-      spacing={8}
+      spacing={4}
     >
       {footerBoxes}
     </Grid>

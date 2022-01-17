@@ -15,21 +15,27 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Arial',
     fontSize: '0.75rem',
     fontWeight: 'bold',
+    textDecoration: 'none',
   },
 }));
 
-const FooterLink = ({ box }) => {
+const FooterLink = ({ box, navigationHandler, selectedMenuItemHandler }) => {
   const classes = useStyles();
   const footerLinks = pages
     .filter((page) => (page.footerBox && page.footerBox === box ? page : null))
     .map((page) => {
       return (
-        <Grid
-          item
-          className={classes.footerLinks}
-          key={`footerLink-${page.title}`}
-        >
-          <Typography component={Link} to={page.path}>
+        <Grid item key={`footerLink-${page.title}`}>
+          <Typography
+            className={classes.footerLinks}
+            component={Link}
+            onClick={(event) => {
+              navigationHandler(event, page.activeIndex);
+              if (page.selectedIndex >= 0)
+                selectedMenuItemHandler(page.selectedIndex);
+            }}
+            to={page.path}
+          >
             {page.title}
           </Typography>
         </Grid>

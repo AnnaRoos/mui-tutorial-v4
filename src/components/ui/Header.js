@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,66 +16,27 @@ import ToolbarMargin from '../helpers/ToolbarMargin';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 
-import { pages } from '../../config/pageConfig';
-
 const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.modal + 1,
   },
 }));
 
-const Header = () => {
+const Header = ({
+  anchorEl,
+  closeMenuHandler,
+  navigationHandler,
+  openDrawer,
+  openMenu,
+  openMenuHandler,
+  selectedIndex,
+  selectedMenuItemHandler,
+  toggleDrawerHandler,
+  value,
+}) => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [openDrawer, setOpenDrawer] = useState(false);
-  const [openMenu, setOpenMenu] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(null);
-  const [value, setValue] = useState(0);
-
-  const navigationHandler = (event, newValue) => {
-    if (event.target.id === 'logo') {
-      setValue(0);
-    } else {
-      setValue(newValue);
-    }
-  };
-
-  const openMenuHandler = (event) => {
-    setAnchorEl(event.currentTarget);
-    setOpenMenu(true);
-  };
-
-  const closeMenuHandler = () => {
-    setAnchorEl(null);
-    setOpenMenu(false);
-  };
-
-  const toggleDrawerHandler = () => {
-    setOpenDrawer((prev) => !prev);
-  };
-
-  const selectMenuItemhandler = (event, index) => {
-    setAnchorEl(null);
-    setOpenMenu(false);
-    setSelectedIndex(index);
-  };
-
-  useEffect(() => {
-    pages.forEach((page) => {
-      if (
-        window.location.pathname === page.path &&
-        value !== page.activeIndex
-      ) {
-        setValue(page.activeIndex);
-        if (page.selectedIndex && page.selectedIndex !== selectedIndex) {
-          setSelectedIndex(page.selectedIndex);
-        }
-      }
-    });
-  }, [value, selectedIndex]);
 
   const tabMenuOptions = {
     ariaOwns: anchorEl ? 'services-menu' : undefined,
@@ -102,7 +63,7 @@ const Header = () => {
         open={openMenu}
         openMenuHandler={openMenuHandler}
         selectedIndex={selectedIndex}
-        selectMenuItemhandler={selectMenuItemhandler}
+        selectedMenuItemHandler={selectedMenuItemHandler}
         value={value}
       />
     </>

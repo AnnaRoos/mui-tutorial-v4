@@ -30,7 +30,7 @@ const TabMenu = React.forwardRef((props, ref) => {
     navigationHandler,
     open,
     selectedIndex,
-    selectMenuItemhandler,
+    selectedMenuItemHandler,
     value,
   } = props;
 
@@ -38,17 +38,17 @@ const TabMenu = React.forwardRef((props, ref) => {
 
   const menuItems = pages
     .filter((page) => (page.menuItem ? page : null))
-    .map((page, index) => {
+    .map((page) => {
       return (
         <MenuItem
           classes={{ root: classes.menuItem }}
           component={Link}
           key={`${page.title}-menuItem`}
           onClick={(event) => {
-            selectMenuItemhandler(event, index);
+            selectedMenuItemHandler(page.selectedIndex);
             navigationHandler(event, page.activeIndex);
           }}
-          selected={index === selectedIndex && value === 1}
+          selected={page.selectedIndex === selectedIndex && value === 1}
           to={page.path}
         >
           {page.title}

@@ -3,8 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import DummyPage from './pages/DummyPage';
-import Footer from './components/ui/Footer';
-import Header from './components/ui/Header';
+import Layout from './components/ui/Layout';
 
 import { pages } from './config/pageConfig';
 import { theme } from './components/ui/Theme';
@@ -24,9 +23,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
-        <Routes>{pageRoutes}</Routes>
-        <Footer />
+        <Layout>
+          <Routes>{pageRoutes}</Routes>
+        </Layout>
       </BrowserRouter>
     </ThemeProvider>
   );

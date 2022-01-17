@@ -24,11 +24,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Footer = () => {
+const Footer = ({ navigationHandler, selectedMenuItemHandler }) => {
   const classes = useStyles();
   return (
     <footer className={classes.footer}>
-      <FooterNavigation boxes={5} />
+      <FooterNavigation
+        boxes={5}
+        navigationHandler={navigationHandler}
+        selectedMenuItemHandler={selectedMenuItemHandler}
+      />
       <img
         alt="black decorative slash"
         className={classes.adornment}
