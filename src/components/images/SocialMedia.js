@@ -35,6 +35,27 @@ const useStyles = makeStyles((theme) => ({
 const SocialMedia = () => {
   const classes = useStyles();
 
+  const socialMedia = [
+    { name: 'facebook', icon: facebook },
+    { name: 'twitter', icon: twitter },
+    { name: 'instagram', icon: instagram },
+  ];
+
+  const socialMediaIcons = socialMedia.map((icon) => {
+    return (
+      <Grid
+        item
+        component={'a'}
+        href={`https://www.${icon.name}.com`}
+        key={icon.name}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img alt={`${icon} logo`} className={classes.logo} src={icon.icon} />
+      </Grid>
+    );
+  });
+
   return (
     <Grid
       className={classes.logoContainer}
@@ -42,33 +63,7 @@ const SocialMedia = () => {
       justifyContent="flex-end"
       spacing={2}
     >
-      <Grid
-        item
-        component={'a'}
-        href="https://www.facebook.com"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <img alt="facebook logo" className={classes.logo} src={facebook} />
-      </Grid>
-      <Grid
-        item
-        component={'a'}
-        href="https://www.twitter.com"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <img alt="twitter logo" className={classes.logo} src={twitter} />
-      </Grid>
-      <Grid
-        item
-        component={'a'}
-        href="https://www.instagram.com"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <img alt="instagram logo" className={classes.logo} src={instagram} />
-      </Grid>
+      {socialMediaIcons}
     </Grid>
   );
 };
