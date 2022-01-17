@@ -35,5 +35,10 @@ export const theme = createMuiTheme({
       textTransform: 'none',
       color: 'black',
     },
+    h3: {
+      fontFamily: 'Raleway',
+      color: arcBlue,
+      fontWeight: 'bold',
+    },
   },
 });

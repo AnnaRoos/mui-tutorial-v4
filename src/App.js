@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 
+import Contact from './pages/Contact';
 import DummyPage from './pages/DummyPage';
 import Layout from './components/ui/Layout';
 
@@ -15,7 +16,13 @@ function App() {
         key={page.title}
         exact
         path={page.path}
-        element={<DummyPage text={page.title} />}
+        element={
+          page.title === 'Contact Us' ? (
+            <Contact />
+          ) : (
+            <DummyPage text={page.title} />
+          )
+        }
       />
     );
   });
