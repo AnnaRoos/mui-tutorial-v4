@@ -1,4 +1,5 @@
 import { unstable_createMuiStrictModeTheme } from '@material-ui/core';
+import { grey } from '@material-ui/core/colors';
 import { createTheme } from '@material-ui/core/styles';
 
 const createMuiTheme =
@@ -35,11 +36,6 @@ export const theme = createMuiTheme({
       textTransform: 'none',
       color: 'black',
     },
-    h3: {
-      fontFamily: 'Raleway',
-      color: arcBlue,
-      fontWeight: 'bold',
-    },
   },
   overrides: {
     MuiInputLabel: {
@@ -49,6 +45,9 @@ export const theme = createMuiTheme({
       },
     },
     MuiInput: {
+      root: {
+        color: grey[500],
+      },
       underline: {
         '&:before': {
           borderBottom: `2px solid ${arcBlue}`,
