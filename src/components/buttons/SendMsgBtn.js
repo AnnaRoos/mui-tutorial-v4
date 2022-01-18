@@ -26,7 +26,7 @@ const SendMsgBtn = () => {
   const classes = useStyles();
   return (
     <Button className={classes.sendBtn} variant="contained">
-      Send Message{' '}
+      Send Message
       <img alt="paper plane" className={classes.airplane} src={airplane} />
     </Button>
   );

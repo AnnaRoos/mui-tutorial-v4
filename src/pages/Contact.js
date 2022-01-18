@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     lineHeight: 1,
   },
+  emailIcon: {
+    verticalAlign: 'bottom',
+  },
   margin: {
     marginTop: '1rem',
   },
@@ -62,31 +65,96 @@ const Contact = () => {
 
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
+  const [nameError, setNameError] = useState(false);
   const [enteredName, setEnteredName] = useState('');
+  const [emailError, setEmailError] = useState(false);
   const [enteredEmail, setEnteredEmail] = useState('');
+  const [phoneError, setPhoneError] = useState(false);
   const [enteredPhone, setEnteredPhone] = useState('');
   const [enteredMessage, setEnteredMessage] = useState('');
 
+  const inputBlurHandler = (event) => {
+    let valid;
+    switch (event.target.id) {
+      case 'name':
+        valid = event.target.value;
+
+        if (!valid) {
+          setNameError(true);
+        }
+        break;
+      case 'email':
+        valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+          event.target.value
+        );
+        if (!valid) {
+          setEmailError(true);
+        }
+        break;
+      case 'phone':
+        valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(
+          event.target.value
+        );
+        if (!valid) {
+          setPhoneError(true);
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
   const inputChangeHandler = (event) => {
-    if (event.target.id === 'name') setEnteredName(event.target.value);
-    if (event.target.id === 'email') setEnteredEmail(event.target.value);
-    if (event.target.id === 'phone') setEnteredPhone(event.target.value);
-    if (event.target.id === 'message') setEnteredMessage(event.target.value);
+    if (event.target.id === 'name') {
+      setEnteredName(event.target.value);
+      setNameError(false);
+    }
+    if (event.target.id === 'email') {
+      setEnteredEmail(event.target.value);
+      setEmailError(false);
+    }
+    if (event.target.id === 'phone') {
+      setEnteredPhone(event.target.value);
+    }
+    if (event.target.id === 'message') {
+      setEnteredMessage(event.target.value);
+    }
   };
 
   const textFieldData = [
-    { id: 'name', label: 'Name', value: enteredName },
-    { id: 'email', label: 'Email', value: enteredEmail },
-    { id: 'phone', label: 'Phone', value: enteredPhone },
+    {
+      error: nameError,
+      id: 'name',
+      label: 'Name',
+      value: enteredName,
+      helper: 'your name',
+    },
+    {
+      error: emailError,
+      id: 'email',
+      label: 'Email',
+      value: enteredEmail,
+      helper: 'a valid email adress',
+    },
+    {
+      error: phoneError,
+      id: 'phone',
+      label: 'Phone',
+      value: enteredPhone,
+      helper: 'a valid phone number',
+    },
   ];
 
   const textFields = textFieldData.map((input) => {
     return (
       <Grid item>
         <TextField
+          error={input.error}
           fullWidth
           id={input.id}
+          helperText={input.error ? `Please enter ${input.helper}` : ''}
           label={input.label}
+          onBlur={(event) => inputBlurHandler(event)}
           onChange={(event) => inputChangeHandler(event)}
           value={input.value}
         ></TextField>
@@ -140,8 +208,8 @@ const Contact = () => {
             <Grid item>
               <img
                 alt="email icon"
+                className={classes.emailIcon}
                 src={emailIcon}
-                style={{ verticalAlign: 'bottom' }}
               />
             </Grid>
             <Grid item>
