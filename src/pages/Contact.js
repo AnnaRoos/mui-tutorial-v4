@@ -6,13 +6,14 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useMediaQuery } from '@material-ui/core';
 
 import SendMsgBtn from '../components/buttons/SendMsgBtn';
 
 import background from '../assets/background.jpg';
+import mobileBackground from '../assets/mobileBackground.jpg';
 import emailIcon from '../assets/email.svg';
 import phoneIcon from '../assets/phone.svg';
-import { useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   airplane: {
@@ -24,6 +25,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'none',
     height: '45rem',
+    [theme.breakpoints.down('sm')]: {
+      backgroundImage: `url(${mobileBackground})`,
+    },
+  },
+  contactContainer: {
+    color: theme.palette.common.arcBlue,
+    lineHeight: 1,
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '3rem',
+      marginBottom: '5rem',
+    },
   },
   contactHeading: {
     fontFamily: 'Raleway',
@@ -31,8 +43,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     lineHeight: 1,
   },
-  formContainer: {
-    color: theme.palette.common.arcBlue,
+  margin: {
+    marginTop: '1rem',
+  },
+  maxWidth: {
+    maxWidth: '20rem',
   },
   messageInput: {
     border: `2px solid ${theme.palette.common.arcBlue}`,
@@ -44,8 +59,8 @@ const useStyles = makeStyles((theme) => ({
 const Contact = () => {
   const classes = useStyles();
   const theme = useTheme();
+
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
-  const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
 
   const [enteredName, setEnteredName] = useState('');
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -83,29 +98,26 @@ const Contact = () => {
     <Grid container direction="row">
       <Grid
         alignItems="center"
-        className={classes.formContainer}
+        className={classes.contactContainer}
         container
         direction="column"
         item
         justifyContent="center"
+        md={5}
         lg={4}
-        style={{
-          marginBottom: matchesMD ? '5rem' : 0,
-          marginTop: matchesSM ? '3rem' : matchesMD ? '5rem' : 0,
-        }}
         xl={3}
       >
         <Grid item>
           <Grid container item direction="column">
             <Typography
-              align={matchesMD ? 'center' : 'left'}
+              align={matchesSM ? 'center' : 'left'}
               className={classes.contactHeading}
               variant="h3"
             >
               Contact Us
             </Typography>
             <Typography
-              align={matchesMD ? 'center' : 'left'}
+              align={matchesSM ? 'center' : 'left'}
               className={classes.waiting}
               variant="body1"
             >
@@ -113,7 +125,7 @@ const Contact = () => {
             </Typography>
           </Grid>
 
-          <Grid container item spacing={1} style={{ marginTop: '2rem' }}>
+          <Grid className={classes.margin} container item spacing={1}>
             <Grid item>
               <img alt="phone icon" src={phoneIcon} />
             </Grid>
@@ -124,7 +136,7 @@ const Contact = () => {
             </Grid>
           </Grid>
 
-          <Grid container item spacing={1} style={{ marginBottom: '1rem' }}>
+          <Grid container item spacing={1}>
             <Grid item>
               <img
                 alt="email icon"
@@ -140,16 +152,16 @@ const Contact = () => {
           </Grid>
 
           <Grid
+            className={[classes.margin, classes.maxWidth]}
             container
             direction="column"
             item
             spacing={1}
-            style={{ marginBottom: '1rem', maxWidth: '20rem' }}
           >
             {textFields}
           </Grid>
 
-          <Grid item style={{ marginBottom: '1rem', maxWidth: '20rem' }}>
+          <Grid className={[classes.margin, classes.maxWidth]} item>
             <TextField
               className={classes.messageInput}
               fullWidth
@@ -162,7 +174,12 @@ const Contact = () => {
               value={enteredMessage}
             ></TextField>
           </Grid>
-          <Grid item container justifyContent="center">
+          <Grid
+            className={classes.margin}
+            item
+            container
+            justifyContent="center"
+          >
             <SendMsgBtn />
           </Grid>
         </Grid>
@@ -172,6 +189,7 @@ const Contact = () => {
         className={classes.backgroundImg}
         container
         item
+        md={7}
         lg={8}
         xl={9}
       ></Grid>
