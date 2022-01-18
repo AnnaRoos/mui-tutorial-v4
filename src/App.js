@@ -7,7 +7,7 @@ import DummyPage from './pages/DummyPage';
 import Layout from './components/ui/Layout';
 
 import { pages } from './config/pageConfig';
-import { theme } from './components/ui/Theme';
+import { theme } from './Theme';
 
 function App() {
   const pageRoutes = pages.map((page) => {
