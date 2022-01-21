@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
 
+import ContactForm from '../components/forms/ContactForm';
 import SendMsgBtn from '../components/buttons/SendMsgBtn';
 
 import background from '../assets/background.jpg';
@@ -157,6 +157,9 @@ const Contact = () => {
       helper: 'your name',
       id: 'name',
       label: 'Name',
+      onBlur: inputBlurHandler,
+      onChange: inputChangeHandler,
+      onFocus: inputFocusHandler,
       value: enteredName,
     },
     {
@@ -164,6 +167,9 @@ const Contact = () => {
       helper: 'a valid email adress',
       id: 'email',
       label: 'Email',
+      onBlur: inputBlurHandler,
+      onChange: inputChangeHandler,
+      onFocus: inputFocusHandler,
       value: enteredEmail,
     },
     {
@@ -171,6 +177,9 @@ const Contact = () => {
       helper: 'a valid phone number',
       id: 'phone',
       label: 'Phone',
+      onBlur: inputBlurHandler,
+      onChange: inputChangeHandler,
+      onFocus: inputFocusHandler,
       value: enteredPhone,
     },
     {
@@ -183,34 +192,14 @@ const Contact = () => {
       },
       label: null,
       multiline: true,
+      onBlur: inputBlurHandler,
+      onChange: inputChangeHandler,
+      onFocus: inputFocusHandler,
       placeholder: 'Write your message',
       rows: 10,
       value: enteredMessage,
     },
   ];
-
-  const textFields = textFieldData.map((input) => {
-    return (
-      <Grid className={classes.maxWidth} item key={`${input.id}-input`}>
-        <TextField
-          className={input.className}
-          error={input.error}
-          fullWidth
-          id={input.id}
-          InputProps={input.inputProps}
-          helperText={input.error ? `Please enter ${input.helper}` : ''}
-          label={input.label}
-          multiline={input.multiline}
-          onBlur={(event) => inputBlurHandler(event)}
-          onChange={(event) => inputChangeHandler(event)}
-          onFocus={(event) => inputFocusHandler(event)}
-          placeholder={input.placeholder}
-          rows={input.rows}
-          value={input.value}
-        ></TextField>
-      </Grid>
-    );
-  });
 
   return (
     <Grid container direction="row">
@@ -276,7 +265,7 @@ const Contact = () => {
             item
             spacing={1}
           >
-            {textFields}
+            <ContactForm form={textFieldData} />
           </Grid>
 
           <Grid
