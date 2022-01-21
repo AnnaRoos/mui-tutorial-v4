@@ -53,9 +53,17 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '20rem',
   },
   messageInput: {
-    border: `2px solid ${theme.palette.common.arcBlue}`,
-    borderRadius: 5,
-    paddingLeft: '0.5rem',
+    '& .MuiInput-root': {
+      border: `2px solid ${theme.palette.common.arcBlue}`,
+      borderRadius: 5,
+      margin: '1rem 0 0 0',
+    },
+    '& .Mui-error': {
+      border: `2px solid red`,
+    },
+    '& .MuiFormHelperText-root': {
+      border: 'none',
+    },
   },
 }));
 
@@ -65,19 +73,22 @@ const Contact = () => {
 
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [nameError, setNameError] = useState(false);
   const [enteredName, setEnteredName] = useState('');
-  const [emailError, setEmailError] = useState(false);
+
   const [enteredEmail, setEnteredEmail] = useState('');
-  const [phoneError, setPhoneError] = useState(false);
   const [enteredPhone, setEnteredPhone] = useState('');
   const [enteredMessage, setEnteredMessage] = useState('');
+
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [messageError, setMessageError] = useState(false);
 
   const inputBlurHandler = (event) => {
     let valid;
     switch (event.target.id) {
       case 'name':
-        valid = event.target.value;
+        valid = enteredName.length > 0;
 
         if (!valid) {
           setNameError(true);
@@ -85,7 +96,7 @@ const Contact = () => {
         break;
       case 'email':
         valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
-          event.target.value
+          enteredEmail
         );
         if (!valid) {
           setEmailError(true);
@@ -93,10 +104,16 @@ const Contact = () => {
         break;
       case 'phone':
         valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(
-          event.target.value
+          enteredPhone
         );
         if (!valid) {
           setPhoneError(true);
+        }
+        break;
+      case 'message':
+        valid = enteredMessage.length > 0;
+        if (!valid) {
+          setMessageError(true);
         }
         break;
       default:
@@ -107,11 +124,9 @@ const Contact = () => {
   const inputChangeHandler = (event) => {
     if (event.target.id === 'name') {
       setEnteredName(event.target.value);
-      setNameError(false);
     }
     if (event.target.id === 'email') {
       setEnteredEmail(event.target.value);
-      setEmailError(false);
     }
     if (event.target.id === 'phone') {
       setEnteredPhone(event.target.value);
@@ -121,41 +136,76 @@ const Contact = () => {
     }
   };
 
+  const inputFocusHandler = (event) => {
+    if (event.target.id === 'name') {
+      setNameError(false);
+    }
+    if (event.target.id === 'email') {
+      setEmailError(false);
+    }
+    if (event.target.id === 'phone') {
+      setPhoneError(false);
+    }
+    if (event.target.id === 'message') {
+      setMessageError(false);
+    }
+  };
+
   const textFieldData = [
     {
       error: nameError,
+      helper: 'your name',
       id: 'name',
       label: 'Name',
       value: enteredName,
-      helper: 'your name',
     },
     {
       error: emailError,
+      helper: 'a valid email adress',
       id: 'email',
       label: 'Email',
       value: enteredEmail,
-      helper: 'a valid email adress',
     },
     {
       error: phoneError,
+      helper: 'a valid phone number',
       id: 'phone',
       label: 'Phone',
       value: enteredPhone,
-      helper: 'a valid phone number',
+    },
+    {
+      className: classes.messageInput,
+      error: messageError,
+      helper: 'your message',
+      id: 'message',
+      inputProps: {
+        disableUnderline: true,
+      },
+      label: null,
+      multiline: true,
+      placeholder: 'Write your message',
+      rows: 10,
+      value: enteredMessage,
     },
   ];
 
   const textFields = textFieldData.map((input) => {
     return (
-      <Grid item>
+      <Grid className={classes.maxWidth} item key={`${input.id}-input`}>
         <TextField
+          className={input.className}
           error={input.error}
           fullWidth
           id={input.id}
+          InputProps={input.inputProps}
           helperText={input.error ? `Please enter ${input.helper}` : ''}
           label={input.label}
+          multiline={input.multiline}
           onBlur={(event) => inputBlurHandler(event)}
           onChange={(event) => inputChangeHandler(event)}
+          onFocus={(event) => inputFocusHandler(event)}
+          placeholder={input.placeholder}
+          rows={input.rows}
           value={input.value}
         ></TextField>
       </Grid>
@@ -220,7 +270,7 @@ const Contact = () => {
           </Grid>
 
           <Grid
-            className={[classes.margin, classes.maxWidth]}
+            className={classes.margin}
             container
             direction="column"
             item
@@ -229,19 +279,6 @@ const Contact = () => {
             {textFields}
           </Grid>
 
-          <Grid className={[classes.margin, classes.maxWidth]} item>
-            <TextField
-              className={classes.messageInput}
-              fullWidth
-              id="message"
-              InputProps={{ disableUnderline: true }}
-              multiline
-              onChange={(event) => inputChangeHandler(event)}
-              placeholder="Write your message"
-              rows={10}
-              value={enteredMessage}
-            ></TextField>
-          </Grid>
           <Grid
             className={classes.margin}
             item
