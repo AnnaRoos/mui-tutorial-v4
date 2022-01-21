@@ -22,14 +22,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SendMsgBtn = () => {
+const SendBtn = ({ disabled }) => {
   const classes = useStyles();
   return (
-    <Button className={classes.sendBtn} variant="contained">
+    <Button className={classes.sendBtn} disabled={disabled} variant="contained">
       Send Message
       <img alt="paper plane" className={classes.airplane} src={airplane} />
     </Button>
   );
 };
 
-export default SendMsgBtn;
+export default SendBtn;

@@ -8,12 +8,11 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
 
 import ContactForm from '../components/forms/ContactForm';
-import SendMsgBtn from '../components/buttons/SendMsgBtn';
+import ContactInfo from '../components/content/ContactInfo';
+import SendBtn from '../components/buttons/SendBtn';
 
 import background from '../assets/background.jpg';
 import mobileBackground from '../assets/mobileBackground.jpg';
-import emailIcon from '../assets/email.svg';
-import phoneIcon from '../assets/phone.svg';
 
 const useStyles = makeStyles((theme) => ({
   airplane: {
@@ -36,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '3rem',
       marginBottom: '5rem',
     },
+    '& a': {
+      textDecoration: 'none',
+      color: 'inherit',
+    },
   },
   contactHeading: {
     fontFamily: 'Raleway',
@@ -47,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: 'bottom',
   },
   margin: {
-    marginTop: '1rem',
+    marginTop: '2rem',
   },
   maxWidth: {
     maxWidth: '20rem',
@@ -57,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
       border: `2px solid ${theme.palette.common.arcBlue}`,
       borderRadius: 5,
       margin: '1rem 0 0 0',
+      paddingLeft: '0.5rem',
     },
     '& .Mui-error': {
       border: `2px solid red`,
@@ -74,7 +78,6 @@ const Contact = () => {
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [enteredName, setEnteredName] = useState('');
-
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPhone, setEnteredPhone] = useState('');
   const [enteredMessage, setEnteredMessage] = useState('');
@@ -89,7 +92,6 @@ const Contact = () => {
     switch (event.target.id) {
       case 'name':
         valid = enteredName.length > 0;
-
         if (!valid) {
           setNameError(true);
         }
@@ -201,6 +203,17 @@ const Contact = () => {
     },
   ];
 
+  const enteredInputs = [
+    enteredName,
+    enteredPhone,
+    enteredEmail,
+    enteredMessage,
+  ];
+  const inputErrors = [nameError, phoneError, emailError, messageError];
+  const sendButtonDisabled =
+    enteredInputs.some((input) => input.length === 0) ||
+    inputErrors.some((inputError) => inputError === true);
+  console.log(sendButtonDisabled);
   return (
     <Grid container direction="row">
       <Grid
@@ -232,30 +245,8 @@ const Contact = () => {
             </Typography>
           </Grid>
 
-          <Grid className={classes.margin} container item spacing={1}>
-            <Grid item>
-              <img alt="phone icon" src={phoneIcon} />
-            </Grid>
-            <Grid item>
-              <Typography className={classes.contactInfo} variant="body2">
-                +46 08 00 00 00
-              </Typography>
-            </Grid>
-          </Grid>
-
-          <Grid container item spacing={1}>
-            <Grid item>
-              <img
-                alt="email icon"
-                className={classes.emailIcon}
-                src={emailIcon}
-              />
-            </Grid>
-            <Grid item>
-              <Typography className={classes.contactInfo} variant="body2">
-                person@emailprovider.com
-              </Typography>
-            </Grid>
+          <Grid className={classes.margin} container direction="column">
+            <ContactInfo />
           </Grid>
 
           <Grid
@@ -274,7 +265,7 @@ const Contact = () => {
             container
             justifyContent="center"
           >
-            <SendMsgBtn />
+            <SendBtn disabled={sendButtonDisabled} />
           </Grid>
         </Grid>
       </Grid>
