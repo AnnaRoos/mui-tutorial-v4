@@ -9,6 +9,7 @@ import { useMediaQuery } from '@material-ui/core';
 
 import ContactForm from '../components/forms/ContactForm';
 import ContactInfo from '../components/content/ContactInfo';
+import ContactDialog from '../components/modals/ContactDialog';
 import SendBtn from '../components/buttons/SendBtn';
 
 import background from '../assets/background.jpg';
@@ -87,6 +88,8 @@ const Contact = () => {
   const [phoneError, setPhoneError] = useState(false);
   const [messageError, setMessageError] = useState(false);
 
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+
   const inputBlurHandler = (event) => {
     let valid;
     switch (event.target.id) {
@@ -153,6 +156,14 @@ const Contact = () => {
     }
   };
 
+  const sendBtnClickHandler = () => {
+    setDialogIsOpen(true);
+  };
+
+  const dialogCloseHandler = () => {
+    setDialogIsOpen(false);
+  };
+
   const textFieldData = [
     {
       error: nameError,
@@ -209,11 +220,13 @@ const Contact = () => {
     enteredEmail,
     enteredMessage,
   ];
+
   const inputErrors = [nameError, phoneError, emailError, messageError];
+
   const sendButtonDisabled =
     enteredInputs.some((input) => input.length === 0) ||
     inputErrors.some((inputError) => inputError === true);
-  console.log(sendButtonDisabled);
+
   return (
     <Grid container direction="row">
       <Grid
@@ -265,11 +278,19 @@ const Contact = () => {
             container
             justifyContent="center"
           >
-            <SendBtn disabled={sendButtonDisabled} />
+            <SendBtn
+              disabled={sendButtonDisabled}
+              sendBtnClickHandler={sendBtnClickHandler}
+            />
           </Grid>
         </Grid>
       </Grid>
-
+      <ContactDialog
+        open={dialogIsOpen}
+        dialogCloseHandler={dialogCloseHandler}
+      >
+        <ContactForm form={textFieldData} />
+      </ContactDialog>
       <Grid
         className={classes.backgroundImg}
         container

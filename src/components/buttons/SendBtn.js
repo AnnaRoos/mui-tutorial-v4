@@ -22,10 +22,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SendBtn = ({ disabled }) => {
+const SendBtn = ({ disabled, sendBtnClickHandler }) => {
   const classes = useStyles();
   return (
-    <Button className={classes.sendBtn} disabled={disabled} variant="contained">
+    <Button
+      className={classes.sendBtn}
+      disabled={disabled}
+      onClick={sendBtnClickHandler}
+      variant="contained"
+    >
       Send Message
       <img alt="paper plane" className={classes.airplane} src={airplane} />
     </Button>
