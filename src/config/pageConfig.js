@@ -1,6 +1,10 @@
+import ContactPage from '../pages/ContactPage';
+import HomePage from '../pages/HomePage';
+
 export const pages = [
   {
     title: 'Home',
+    page: HomePage,
     path: '/',
     tabItem: true,
     drawerItem: true,
@@ -9,6 +13,7 @@ export const pages = [
   },
   {
     title: 'Services',
+
     path: '/services',
     tabItem: true,
     menuItem: true,
@@ -36,6 +41,7 @@ export const pages = [
   },
   {
     title: 'Contact Us',
+    page: ContactPage,
     path: '/contact',
     tabItem: true,
     drawerItem: true,

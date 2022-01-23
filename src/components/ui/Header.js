@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import CTAButton from '../buttons/CTAButton';
+import CTABtn from '../buttons/CTABtn';
 import DrawerNavigation from '../navigation/DrawerNavigation';
 import ElevationScroll from '../hoc/ElevationScroll';
 import Logo from '../images/Logo';
@@ -51,7 +51,7 @@ const Header = ({
         tabMenuOptions={tabMenuOptions}
         value={value}
       />
-      <CTAButton
+      <CTABtn
         navigationHandler={navigationHandler}
         position={{ margin: '0 50px 0 25px' }}
       />

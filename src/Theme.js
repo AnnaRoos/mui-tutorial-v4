@@ -36,6 +36,13 @@ export const theme = createMuiTheme({
       textTransform: 'none',
       color: 'black',
     },
+    h2: {
+      fontFamily: 'Raleway',
+      fontWeight: 700,
+      fontSize: '2.5rem',
+      color: arcBlue,
+      lineHeight: 1.5,
+    },
   },
   overrides: {
     MuiInputLabel: {
