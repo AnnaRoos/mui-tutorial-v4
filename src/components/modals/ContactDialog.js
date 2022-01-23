@@ -36,6 +36,7 @@ const ContactDialog = ({ children, dialogCloseHandler, open }) => {
 
   return (
     <Dialog
+      fullScreen={matchesXS}
       onClose={dialogCloseHandler}
       open={open}
       PaperProps={{
@@ -49,6 +50,7 @@ const ContactDialog = ({ children, dialogCloseHandler, open }) => {
             : '5rem 20rem',
         },
       }}
+      style={{ zIndex: 1302 }}
     >
       <DialogContent>
         <Grid container direction="column">
@@ -64,7 +66,13 @@ const ContactDialog = ({ children, dialogCloseHandler, open }) => {
           </Grid>
           {children}
         </Grid>
-        <Grid alignItems="center" className={classes.marginTop} container item>
+        <Grid
+          alignItems="center"
+          className={classes.marginTop}
+          container
+          direction={matchesSM ? 'column' : 'row'}
+          item
+        >
           <Grid item>
             <Button
               className={classes.cancelBtn}
@@ -75,7 +83,7 @@ const ContactDialog = ({ children, dialogCloseHandler, open }) => {
             </Button>
           </Grid>
           <Grid item>
-            <SendBtn></SendBtn>
+            <SendBtn />
           </Grid>
         </Grid>
       </DialogContent>

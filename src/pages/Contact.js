@@ -286,8 +286,8 @@ const Contact = () => {
         </Grid>
       </Grid>
       <ContactDialog
-        open={dialogIsOpen}
         dialogCloseHandler={dialogCloseHandler}
+        open={dialogIsOpen}
       >
         <ContactForm form={textFieldData} />
       </ContactDialog>

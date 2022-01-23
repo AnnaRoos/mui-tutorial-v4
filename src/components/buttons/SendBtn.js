@@ -14,10 +14,14 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.estimate,
     backgroundColor: theme.palette.common.arcOrange,
     borderRadius: '50px',
-    height: '45px',
+    height: '3rem',
     width: '12rem',
     '&:hover': {
       backgroundColor: theme.palette.common.arcOrange,
+    },
+    [theme.breakpoints.down('sm')]: {
+      height: '2.5rem',
+      width: '11rem',
     },
   },
 }));
