@@ -9,12 +9,17 @@ import ButtonArrow from './ButtonArrow';
 const useStyles = makeStyles((theme) => ({
   root: {
     borderColor: theme.palette.common.arcBlue,
+    borderWidth: '2px',
     borderRadius: '50px',
     height: '3rem',
-    minWidth: '9rem',
+    width: '9rem',
     color: theme.palette.common.arcBlue,
     textTransform: 'none',
-    fontSize: theme.typography.body1.fontSize,
+    fontSize: '0.9rem',
+    fontWeight: 'bold',
+    '& span': {
+      margin: '0 0.5rem 0 0',
+    },
   },
 }));
 
@@ -24,11 +29,11 @@ const LearnMoreBtn = () => {
 
   return (
     <Button className={classes.root} variant="outlined">
-      Learn more
+      <span>Learn more</span>
       <ButtonArrow
         fill={theme.palette.common.arcBlue}
         height={'1rem'}
-        width={'1.5rem'}
+        width={'1rem'}
       />
     </Button>
   );
