@@ -11,11 +11,11 @@ const useStyles = makeStyles((theme) => ({
     borderColor: theme.palette.common.arcBlue,
     borderWidth: '2px',
     borderRadius: '50px',
-    height: '3rem',
-    width: '9rem',
+    height: (config) => config.height,
+    width: (config) => config.width,
     color: theme.palette.common.arcBlue,
     textTransform: 'none',
-    fontSize: '0.9rem',
+    fontSize: (config) => config.fontSize,
     fontWeight: 'bold',
     '& span': {
       margin: '0 0.5rem 0 0',
@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LearnMoreBtn = () => {
-  const classes = useStyles();
+const LearnMoreBtn = ({ config }) => {
+  const classes = useStyles(config);
   const theme = useTheme();
 
   return (

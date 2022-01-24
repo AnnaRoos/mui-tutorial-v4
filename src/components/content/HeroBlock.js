@@ -44,6 +44,8 @@ const Hero = () => {
   const theme = useTheme();
 
   const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
+
+  const learnBtnConfig = { fontSize: '0.9rem', height: '3rem', width: '9rem' };
   return (
     <Grid
       alignItems="center"
@@ -66,7 +68,7 @@ const Hero = () => {
             <CTABtn />
           </Grid>
           <Grid item>
-            <LearnMoreBtn />
+            <LearnMoreBtn config={learnBtnConfig} />
           </Grid>
         </Grid>
       </Grid>

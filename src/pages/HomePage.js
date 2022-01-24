@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import Hero from '../components/content/Hero';
+import HeroBlock from '../components/content/HeroBlock';
 import ServicesBlock from '../components/content/ServicesBlock';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +25,7 @@ const HomePage = () => {
   return (
     <Grid className={classes.root} container direction="column">
       <Grid item>
-        <Hero />
+        <HeroBlock />
       </Grid>
       <Grid item>
         <ServicesBlock />

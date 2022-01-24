@@ -9,12 +9,14 @@ const createMuiTheme =
 
 const arcBlue = '#0B72B9';
 const arcOrange = '#FFBA60';
+const arcGrey = '#868686';
 
 export const theme = createMuiTheme({
   palette: {
     common: {
       arcBlue: arcBlue,
       arcOrange: arcOrange,
+      arcGrey: arcGrey,
     },
     primary: {
       main: arcBlue,
@@ -42,6 +44,17 @@ export const theme = createMuiTheme({
       fontSize: '2.5rem',
       color: arcBlue,
       lineHeight: 1.5,
+    },
+    h4: {
+      fontFamily: 'Raleway',
+      fontWeight: 700,
+      fontSize: '1.75rem',
+      color: arcBlue,
+    },
+    subtitle1: {
+      fontWeight: 300,
+      fontSize: '1.25rem',
+      color: arcGrey,
     },
   },
   overrides: {
