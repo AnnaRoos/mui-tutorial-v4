@@ -8,12 +8,12 @@ import ButtonArrow from './ButtonArrow';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    borderColor: theme.palette.common.arcBlue,
+    borderColor: (styling) => styling.borderColor,
     borderWidth: '2px',
     borderRadius: '50px',
     height: (styling) => styling.height,
     width: (styling) => styling.width,
-    color: theme.palette.common.arcBlue,
+    color: (styling) => styling.color,
     textTransform: 'none',
     fontSize: (styling) => styling.fontSize,
     fontWeight: 'bold',
@@ -23,18 +23,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LearnMoreBtn = ({ styling = null }) => {
+const LearnMoreBtn = ({ styling = null, arrowStyling = null }) => {
+  const theme = useTheme();
   const customStyles = styling
     ? styling
-    : { fontSize: '0.9rem', height: '3rem', width: '9rem' };
+    : {
+        color: theme.palette.common.arcBlue,
+        borderColor: theme.palette.common.arcBlue,
+        fontSize: '0.9rem',
+        height: '3rem',
+        width: '9rem',
+      };
   const classes = useStyles(customStyles);
-  const theme = useTheme();
 
   return (
     <Button className={classes.root} variant="outlined">
       <span>Learn more</span>
       <ButtonArrow
-        fill={theme.palette.common.arcBlue}
+        fill={arrowStyling ? arrowStyling.color : theme.palette.common.arcBlue}
         height={'1rem'}
         width={'1rem'}
       />
