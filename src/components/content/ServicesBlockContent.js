@@ -8,25 +8,28 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
-  icon: {
-    margin: '0 0 0 3rem',
-    [theme.breakpoints.down('xs')]: {
-      margin: '0',
-    },
-  },
+
   specialText: {
     fontFamily: 'Pacifico',
     color: theme.palette.common.arcOrange,
   },
   subtitle1: {
-    margin: '1rem 0 0 0',
+    margin: '0 0 1rem 0',
   },
   subtitle2: {
     maxWidth: '34rem',
+    margin: '0 0 1rem 0',
   },
 }));
 
-const ServicesBlockContent = ({ icon, title, subtitle1, subtitle2, span }) => {
+const ServicesBlockContent = ({
+  alt,
+  icon,
+  title,
+  subtitle1,
+  subtitle2,
+  span = null,
+}) => {
   const classes = useStyles();
 
   const learnBtnConfig = {
@@ -34,6 +37,10 @@ const ServicesBlockContent = ({ icon, title, subtitle1, subtitle2, span }) => {
     height: '2.5rem',
     width: '8rem',
   };
+
+  const spanText = span ? (
+    <span className={classes.specialText}>{span}</span>
+  ) : null;
 
   return (
     <>
@@ -43,12 +50,13 @@ const ServicesBlockContent = ({ icon, title, subtitle1, subtitle2, span }) => {
           {subtitle1}
         </Typography>
         <Typography className={classes.subtitle2} variant="subtitle1">
-          {subtitle2} <span className={classes.specialText}>{span}</span>
+          {subtitle2}
+          {spanText}
         </Typography>
         <LearnMoreBtn config={learnBtnConfig} />
       </Grid>
       <Grid item>
-        <img alt="custom software icon" className={classes.icon} src={icon} />
+        <img alt={alt} src={icon} />
       </Grid>
     </>
   );

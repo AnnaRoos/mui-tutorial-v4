@@ -57,7 +57,7 @@ export const pages = [
     footerBox: 2,
   },
   {
-    title: 'Mobile Apps',
+    title: 'iOS/Android Apps',
     path: '/mobileapps',
     menuItem: true,
     activeIndex: 1,

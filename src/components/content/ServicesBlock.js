@@ -8,16 +8,21 @@ import { useMediaQuery } from '@material-ui/core';
 import ServicesBlockContent from './ServicesBlockContent';
 
 import customSoftwareIcon from '../../assets/customSoftwareIcon.svg';
+import mobileIcon from '../../assets/mobileIcon.svg';
+import websiteIcon from '../../assets/websiteIcon.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: '0 5rem 0 5rem',
     [theme.breakpoints.down('sm')]: {
-      padding: '0 1rem 0 1rem',
+      padding: '0',
     },
   },
   serviceContainer: {
     margin: '12rem 0 0 0',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
   },
 }));
 
@@ -30,9 +35,10 @@ const ServicesBlock = () => {
     {
       title: 'Custom Software Development',
       subtitle1: 'Save Energy. Save Time. Save Money.',
-      subtitle2: 'Complete digital solutions, from investigation to',
+      subtitle2: 'Complete digital solutions, from investigation to ',
       span: 'celebration.',
       icon: customSoftwareIcon,
+      alt: 'Customsoftare icon',
       placement: 'flex-start',
     },
     {
@@ -40,14 +46,16 @@ const ServicesBlock = () => {
       subtitle1: 'Extend Functionality. Extend Access. Increase Engagement.',
       subtitle2:
         'Integrate your web experience or create a standalone app with either mobile platform.',
-      icon: customSoftwareIcon,
+      icon: mobileIcon,
+      alt: 'Mobile app icon',
       placement: 'flex-end',
     },
     {
       title: 'Website Development',
       subtitle1: 'Reach More. Discover More. Sell more.',
       subtitle2: 'Optimized for Search Engines, built for speed.',
-      icon: customSoftwareIcon,
+      icon: websiteIcon,
+      alt: 'website development icon',
       placement: 'flex-start',
     },
   ].map((service) => {
@@ -59,6 +67,8 @@ const ServicesBlock = () => {
         item
         direction="row"
         justifyContent={matchesSM ? 'center' : service.placement}
+        spacing={6}
+        xs
       >
         <ServicesBlockContent
           title={service.title}

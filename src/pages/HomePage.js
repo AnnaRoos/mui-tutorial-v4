@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import HeroBlock from '../components/content/HeroBlock';
 import ServicesBlock from '../components/content/ServicesBlock';
+import RevolutionBlock from '../components/content/RevolutionBlock';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +30,9 @@ const HomePage = () => {
       </Grid>
       <Grid item>
         <ServicesBlock />
+      </Grid>
+      <Grid item>
+        <RevolutionBlock />
       </Grid>
     </Grid>
   );
