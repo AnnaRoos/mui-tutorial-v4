@@ -7,8 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
-
   specialText: {
     fontFamily: 'Pacifico',
     color: theme.palette.common.arcOrange,
@@ -32,7 +30,7 @@ const ServicesBlockContent = ({
 }) => {
   const classes = useStyles();
 
-  const learnBtnConfig = {
+  const learnBtnStyling = {
     fontSize: '0.7rem',
     height: '2.5rem',
     width: '8rem',
@@ -53,7 +51,7 @@ const ServicesBlockContent = ({
           {subtitle2}
           {spanText}
         </Typography>
-        <LearnMoreBtn config={learnBtnConfig} />
+        <LearnMoreBtn styling={learnBtnStyling} />
       </Grid>
       <Grid item>
         <img alt={alt} src={icon} />

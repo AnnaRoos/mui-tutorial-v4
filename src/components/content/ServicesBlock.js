@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   serviceContainer: {
-    margin: '12rem 0 0 0',
+    margin: '10rem 0 0 0',
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     },
@@ -39,7 +39,7 @@ const ServicesBlock = () => {
       span: 'celebration.',
       icon: customSoftwareIcon,
       alt: 'Customsoftare icon',
-      placement: 'flex-start',
+      justify: 'flex-start',
     },
     {
       title: 'iOS/Android App Development',
@@ -48,7 +48,7 @@ const ServicesBlock = () => {
         'Integrate your web experience or create a standalone app with either mobile platform.',
       icon: mobileIcon,
       alt: 'Mobile app icon',
-      placement: 'flex-end',
+      justify: 'flex-end',
     },
     {
       title: 'Website Development',
@@ -56,7 +56,7 @@ const ServicesBlock = () => {
       subtitle2: 'Optimized for Search Engines, built for speed.',
       icon: websiteIcon,
       alt: 'website development icon',
-      placement: 'flex-start',
+      justify: 'flex-start',
     },
   ].map((service) => {
     return (
@@ -66,7 +66,7 @@ const ServicesBlock = () => {
         container
         item
         direction="row"
-        justifyContent={matchesSM ? 'center' : service.placement}
+        justifyContent={matchesSM ? 'center' : service.justify}
         spacing={6}
         xs
       >

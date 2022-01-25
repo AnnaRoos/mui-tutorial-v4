@@ -5,8 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 import HeroBlock from '../components/content/HeroBlock';
-import ServicesBlock from '../components/content/ServicesBlock';
+import InfoBlock from '../components/content/InfoBlock';
 import RevolutionBlock from '../components/content/RevolutionBlock';
+import ServicesBlock from '../components/content/ServicesBlock';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,9 @@ const HomePage = () => {
       </Grid>
       <Grid item>
         <RevolutionBlock />
+      </Grid>
+      <Grid item>
+        <InfoBlock />
       </Grid>
     </Grid>
   );
