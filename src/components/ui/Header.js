@@ -36,7 +36,7 @@ const Header = ({
 }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('md'));
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const tabMenuOptions = {
     ariaOwns: anchorEl ? 'services-menu' : undefined,
@@ -86,7 +86,7 @@ const Header = ({
         <AppBar className={classes.appBar}>
           <Toolbar disableGutters>
             <Logo navigationHandler={navigationHandler} />
-            {matches ? drawer : tabs}
+            {matchesSM ? drawer : tabs}
           </Toolbar>
         </AppBar>
       </ElevationScroll>

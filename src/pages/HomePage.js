@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { makeStyles } from '@material-ui/core/styles';
 
+import CTABlock from '../components/content/CTABlock';
 import HeroBlock from '../components/content/HeroBlock';
 import InfoBlock from '../components/content/InfoBlock';
 import RevolutionBlock from '../components/content/RevolutionBlock';
@@ -21,22 +22,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HomePage = () => {
+const HomePage = ({ navigationHandler }) => {
   const classes = useStyles();
 
   return (
     <Grid className={classes.root} container direction="column">
       <Grid item>
-        <HeroBlock />
+        <HeroBlock navigationHandler={navigationHandler} />
       </Grid>
       <Grid item>
-        <ServicesBlock />
+        <ServicesBlock navigationHandler={navigationHandler} />
       </Grid>
       <Grid item>
-        <RevolutionBlock />
+        <RevolutionBlock navigationHandler={navigationHandler} />
       </Grid>
       <Grid item>
-        <InfoBlock />
+        <InfoBlock navigationHandler={navigationHandler} />
+      </Grid>
+      <Grid item>
+        <CTABlock navigationHandler={navigationHandler} />
       </Grid>
     </Grid>
   );

@@ -3,7 +3,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { useMediaQuery } from '@material-ui/core';
 
 import infoBackground from '../../assets/infoBackground.svg';
 import LearnMoreBtn from '../buttons/LearnMoreBtn';
@@ -17,44 +18,69 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
+    color: 'white',
+  },
+  title: {
+    color: 'white',
+  },
+  subtitle2: {
+    margin: '0 0 1rem 0',
   },
 }));
 
-const InfoBlock = () => {
+const InfoBlock = ({ navigationHandler }) => {
   const classes = useStyles();
-
-  const learnBtnStyling = {
-    color: 'white',
-    borderColor: 'white',
-    fontSize: '0.7rem',
-    height: '2.5rem',
-    width: '8rem',
-  };
+  const theme = useTheme();
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
     <Grid
       className={classes.root}
       container
+      direction={matchesXS ? 'column' : 'row'}
       alignItems="center"
-      justifyContent="space-between"
+      justifyContent={matchesXS ? 'space-evenly' : 'space-between'}
     >
       <Grid item>
-        <Grid container direction="column">
-          <Typography>About Us</Typography>
-          <Typography>Let’s get personal.</Typography>
+        <Grid
+          container
+          direction="column"
+          alignItems={matchesXS ? 'center' : 'flex-start'}
+        >
+          <Typography className={classes.title} variant="h2">
+            About Us
+          </Typography>
+          <Typography className={classes.subtitle2} variant="subtitle2">
+            Let’s get personal.
+          </Typography>
           <LearnMoreBtn
-            styling={learnBtnStyling}
-            arrowStyling={{ color: 'white' }}
+            size="sm"
+            color="white"
+            navigationHandler={navigationHandler}
+            page="/about"
           />
         </Grid>
       </Grid>
       <Grid item>
-        <Grid container direction="column" alignItems="flex-end">
-          <Typography>Contact Us</Typography>
-          <Typography>Say hello!</Typography>
+        <Grid
+          container
+          direction="column"
+          alignItems={matchesXS ? 'center' : 'flex-end'}
+        >
+          <Typography className={classes.title} variant="h2">
+            Contact Us
+          </Typography>
+          <Typography className={classes.subtitle2} variant="subtitle2">
+            Say hello!{' '}
+            <span aria-label="waving hand" role="img">
+              👋
+            </span>
+          </Typography>
           <LearnMoreBtn
-            styling={learnBtnStyling}
-            arrowStyling={{ color: 'white' }}
+            size="sm"
+            color="white"
+            navigationHandler={navigationHandler}
+            page="/contact"
           />
         </Grid>
       </Grid>

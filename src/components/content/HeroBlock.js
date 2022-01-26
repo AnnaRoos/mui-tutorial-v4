@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Hero = () => {
+const Hero = ({ navigationHandler }) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -64,10 +64,15 @@ const Hero = () => {
           spacing={matchesXS ? 1 : 3}
         >
           <Grid item>
-            <CTABtn />
+            <CTABtn navigationHandler={navigationHandler} />
           </Grid>
           <Grid item>
-            <LearnMoreBtn />
+            <LearnMoreBtn
+              size="lg"
+              color="blue"
+              navigationHandler={navigationHandler}
+              page="/"
+            />
           </Grid>
         </Grid>
       </Grid>

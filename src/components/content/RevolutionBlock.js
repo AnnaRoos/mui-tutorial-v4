@@ -34,9 +34,12 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: 0,
     },
   },
+  subtitle1: {
+    margin: '0 0 1rem 0',
+  },
 }));
 
-const RevolutionBlock = () => {
+const RevolutionBlock = ({ navigationHandler }) => {
   const classes = useStyles();
 
   return (
@@ -60,13 +63,18 @@ const RevolutionBlock = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">
+              <Typography className={classes.subtitle1} variant="subtitle1">
                 Visionary insights coupled with cutting-edge technology is a
                 recipe for revolution.
               </Typography>
             </Grid>
             <Grid item>
-              <LearnMoreBtn />
+              <LearnMoreBtn
+                size="lg"
+                color="blue"
+                navigationHandler={navigationHandler}
+                page="/revolution"
+              />
             </Grid>
           </Grid>
         </CardContent>

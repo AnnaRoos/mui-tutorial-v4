@@ -13,7 +13,6 @@ export const pages = [
   },
   {
     title: 'Services',
-
     path: '/services',
     tabItem: true,
     menuItem: true,
@@ -50,7 +49,7 @@ export const pages = [
   },
   {
     title: 'Custom Software',
-    path: '/cutomsoftware',
+    path: '/customsoftware',
     menuItem: true,
     activeIndex: 1,
     selectedIndex: 1,
@@ -72,7 +71,12 @@ export const pages = [
     selectedIndex: 3,
     footerBox: 2,
   },
-  { title: 'Free Estimate', path: '/estimate', drawerItem: true },
+  {
+    title: 'Free Estimate',
+    path: '/estimate',
+    activeIndex: null,
+    drawerItem: true,
+  },
   { title: 'Vision', path: '/vision', activeIndex: 2, footerBox: 3 },
   { title: 'Technology', path: '/technology', activeIndex: 2, footerBox: 3 },
   { title: 'Process', path: '/process', activeIndex: 2, footerBox: 3 },

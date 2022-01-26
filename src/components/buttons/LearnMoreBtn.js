@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import Button from '@material-ui/core/Button';
 
 import { makeStyles, useTheme } from '@material-ui/styles';
@@ -8,14 +10,14 @@ import ButtonArrow from './ButtonArrow';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    borderColor: (styling) => styling.borderColor,
+    borderColor: (buttonStyle) => buttonStyle.buttonColor.borderColor,
     borderWidth: '2px',
     borderRadius: '50px',
-    height: (styling) => styling.height,
-    width: (styling) => styling.width,
-    color: (styling) => styling.color,
+    height: (buttonStyle) => buttonStyle.buttonSize.height,
+    width: (buttonStyle) => buttonStyle.buttonSize.width,
+    color: (buttonStyle) => buttonStyle.buttonColor.color,
     textTransform: 'none',
-    fontSize: (styling) => styling.fontSize,
+    fontSize: (buttonStyle) => buttonStyle.buttonSize.fontSize,
     fontWeight: 'bold',
     '& span': {
       margin: '0 0.5rem 0 0',
@@ -23,24 +25,49 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LearnMoreBtn = ({ styling = null, arrowStyling = null }) => {
+const LearnMoreBtn = ({
+  size = 'lg',
+  color = 'blue',
+  navigationHandler,
+  page = '/',
+}) => {
   const theme = useTheme();
-  const customStyles = styling
-    ? styling
-    : {
-        color: theme.palette.common.arcBlue,
-        borderColor: theme.palette.common.arcBlue,
-        fontSize: '0.9rem',
-        height: '3rem',
-        width: '9rem',
-      };
-  const classes = useStyles(customStyles);
+
+  const buttonSize =
+    size === 'lg'
+      ? {
+          fontSize: '0.9rem',
+          height: '3rem',
+          width: '9rem',
+        }
+      : { fontSize: '0.7rem', height: '2.5rem', width: '8rem' };
+
+  const buttonColor =
+    color === 'blue'
+      ? {
+          color: theme.palette.common.arcBlue,
+          borderColor: theme.palette.common.arcBlue,
+        }
+      : {
+          color: 'white',
+          borderColor: 'white',
+        };
+
+  const buttonStyle = { buttonSize, buttonColor };
+
+  const classes = useStyles(buttonStyle);
 
   return (
-    <Button className={classes.root} variant="outlined">
+    <Button
+      className={classes.root}
+      component={Link}
+      to={page}
+      variant="outlined"
+      onClick={(event) => navigationHandler(event)}
+    >
       <span>Learn more</span>
       <ButtonArrow
-        fill={arrowStyling ? arrowStyling.color : theme.palette.common.arcBlue}
+        fill={color === 'blue' ? theme.palette.common.arcBlue : 'white'}
         height={'1rem'}
         width={'1rem'}
       />

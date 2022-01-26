@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ServicesBlock = () => {
+const ServicesBlock = ({ navigationHandler }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -40,6 +40,7 @@ const ServicesBlock = () => {
       icon: customSoftwareIcon,
       alt: 'Customsoftare icon',
       justify: 'flex-start',
+      page: '/customsoftware',
     },
     {
       title: 'iOS/Android App Development',
@@ -49,6 +50,7 @@ const ServicesBlock = () => {
       icon: mobileIcon,
       alt: 'Mobile app icon',
       justify: 'flex-end',
+      page: '/mobileapps',
     },
     {
       title: 'Website Development',
@@ -57,6 +59,7 @@ const ServicesBlock = () => {
       icon: websiteIcon,
       alt: 'website development icon',
       justify: 'flex-start',
+      page: '/websites',
     },
   ].map((service) => {
     return (
@@ -76,6 +79,8 @@ const ServicesBlock = () => {
           subtitle2={service.subtitle2}
           span={service.span}
           icon={service.icon}
+          navigationHandler={navigationHandler}
+          page={service.page}
         />
       </Grid>
     );
