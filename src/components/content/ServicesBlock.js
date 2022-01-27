@@ -10,22 +10,23 @@ import ServicesBlockContent from './ServicesBlockContent';
 import { pages } from '../../config/pageConfig';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: '0 5rem 0 5rem',
-    [theme.breakpoints.down('sm')]: {
-      padding: '0',
-    },
-  },
+  root: {},
   serviceContainer: {
-    margin: '10rem 0 0 0',
+    margin: (position) => position.margin,
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     },
   },
 }));
 
-const ServicesBlock = ({ navigationHandler, selectedMenuItemHandler }) => {
-  const classes = useStyles();
+const ServicesBlock = ({
+  navigationHandler,
+  selectedMenuItemHandler,
+  middlePlacement,
+  topBottomPlacement,
+  position,
+}) => {
+  const classes = useStyles(position);
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -38,9 +39,13 @@ const ServicesBlock = ({ navigationHandler, selectedMenuItemHandler }) => {
           className={classes.serviceContainer}
           container
           item
-          direction="row"
+          direction={matchesSM ? 'column' : 'row'}
           justifyContent={
-            matchesSM ? 'center' : index === 1 ? 'flex-end' : 'flex-start'
+            matchesSM
+              ? 'center'
+              : index === 1
+              ? middlePlacement
+              : topBottomPlacement
           }
           spacing={6}
           xs
