@@ -67,7 +67,8 @@ const CTABlock = ({ navigationHandler }) => {
               size="sm"
               color="blue"
               navigationHandler={navigationHandler}
-              page="/"
+              path="/revolution"
+              activeIndex={2}
             />
           </Grid>
         </Grid>

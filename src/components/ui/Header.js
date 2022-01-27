@@ -30,9 +30,9 @@ const Header = ({
   openMenu,
   openMenuHandler,
   selectedIndex,
-  selectedMenuItemHandler,
   toggleDrawerHandler,
-  value,
+  activeIndex,
+  selectedMenuItemHandler,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -49,7 +49,7 @@ const Header = ({
       <TabNavigation
         navigationHandler={navigationHandler}
         tabMenuOptions={tabMenuOptions}
-        value={value}
+        activeIndex={activeIndex}
       />
       <CTABtn
         navigationHandler={navigationHandler}
@@ -63,8 +63,8 @@ const Header = ({
         open={openMenu}
         openMenuHandler={openMenuHandler}
         selectedIndex={selectedIndex}
+        activeIndex={activeIndex}
         selectedMenuItemHandler={selectedMenuItemHandler}
-        value={value}
       />
     </>
   );
@@ -75,7 +75,7 @@ const Header = ({
         navigationHandler={navigationHandler}
         toggleDrawerHandler={toggleDrawerHandler}
         open={openDrawer}
-        value={value}
+        activeIndex={activeIndex}
       />
     </>
   );

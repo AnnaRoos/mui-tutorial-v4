@@ -31,7 +31,7 @@ const TabMenu = React.forwardRef((props, ref) => {
     open,
     selectedIndex,
     selectedMenuItemHandler,
-    value,
+    activeIndex,
   } = props;
 
   const classes = useStyles();
@@ -48,7 +48,7 @@ const TabMenu = React.forwardRef((props, ref) => {
             selectedMenuItemHandler(page.selectedIndex);
             navigationHandler(event, page.activeIndex);
           }}
-          selected={page.selectedIndex === selectedIndex && value === 1}
+          selected={page.selectedIndex === selectedIndex && activeIndex === 1}
           to={page.path}
         >
           {page.title}

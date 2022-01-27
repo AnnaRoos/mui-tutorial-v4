@@ -29,7 +29,7 @@ const Logo = ({ navigationHandler }) => {
       className={classes.logoButton}
       component={Link}
       to="/"
-      onClick={navigationHandler}
+      onClick={(event) => navigationHandler(event, 0)}
       disableRipple
     >
       <img

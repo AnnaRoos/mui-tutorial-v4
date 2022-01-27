@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HomePage = ({ navigationHandler }) => {
+const HomePage = ({ navigationHandler, selectedMenuItemHandler }) => {
   const classes = useStyles();
 
   return (
@@ -31,7 +31,10 @@ const HomePage = ({ navigationHandler }) => {
         <HeroBlock navigationHandler={navigationHandler} />
       </Grid>
       <Grid item>
-        <ServicesBlock navigationHandler={navigationHandler} />
+        <ServicesBlock
+          navigationHandler={navigationHandler}
+          selectedMenuItemHandler={selectedMenuItemHandler}
+        />
       </Grid>
       <Grid item>
         <RevolutionBlock navigationHandler={navigationHandler} />

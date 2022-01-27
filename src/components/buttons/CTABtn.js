@@ -26,7 +26,7 @@ const CTAButton = ({ navigationHandler, position }) => {
       component={Link}
       color="secondary"
       disableElevation
-      onClick={(event) => navigationHandler(event)}
+      onClick={(event) => navigationHandler(event, 5)}
       to={'/estimate'}
       variant="contained"
     >

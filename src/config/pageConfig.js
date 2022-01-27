@@ -1,6 +1,10 @@
 import ContactPage from '../pages/ContactPage';
 import HomePage from '../pages/HomePage';
 
+import customSoftwareIcon from '../assets/customSoftwareIcon.svg';
+import mobileIcon from '../assets/mobileIcon.svg';
+import websiteIcon from '../assets/websiteIcon.svg';
+
 export const pages = [
   {
     title: 'Home',
@@ -54,6 +58,13 @@ export const pages = [
     activeIndex: 1,
     selectedIndex: 1,
     footerBox: 2,
+    servicesBlock: {
+      subtitle1: 'Save Energy. Save Time. Save Money.',
+      subtitle2: 'Complete digital solutions, from investigation to ',
+      span: 'celebration.',
+      icon: customSoftwareIcon,
+      alt: 'Customsoftare icon',
+    },
   },
   {
     title: 'iOS/Android Apps',
@@ -62,6 +73,13 @@ export const pages = [
     activeIndex: 1,
     selectedIndex: 2,
     footerBox: 2,
+    servicesBlock: {
+      subtitle1: 'Extend Functionality. Extend Access. Increase Engagement.',
+      subtitle2:
+        'Integrate your web experience or create a standalone app with either mobile platform.',
+      icon: mobileIcon,
+      alt: 'Mobile app icon',
+    },
   },
   {
     title: 'Websites',
@@ -70,11 +88,17 @@ export const pages = [
     activeIndex: 1,
     selectedIndex: 3,
     footerBox: 2,
+    servicesBlock: {
+      subtitle1: 'Reach More. Discover More. Sell more.',
+      subtitle2: 'Optimized for Search Engines, built for speed.',
+      icon: websiteIcon,
+      alt: 'website development icon',
+    },
   },
   {
     title: 'Free Estimate',
     path: '/estimate',
-    activeIndex: null,
+    activeIndex: 5,
     drawerItem: true,
   },
   { title: 'Vision', path: '/vision', activeIndex: 2, footerBox: 3 },

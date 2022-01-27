@@ -29,7 +29,10 @@ const LearnMoreBtn = ({
   size = 'lg',
   color = 'blue',
   navigationHandler,
-  page = '/',
+  selectedMenuItemHandler = null,
+  path = '/',
+  activeIndex,
+  selectedIndex = null,
 }) => {
   const theme = useTheme();
 
@@ -57,13 +60,20 @@ const LearnMoreBtn = ({
 
   const classes = useStyles(buttonStyle);
 
+  const learnBtnClickHandler = (event, activeIndex, selectedIndex = null) => {
+    navigationHandler(event, activeIndex);
+    if (selectedIndex) selectedMenuItemHandler(selectedIndex);
+  };
+
   return (
     <Button
       className={classes.root}
       component={Link}
-      to={page}
+      to={path}
       variant="outlined"
-      onClick={(event) => navigationHandler(event)}
+      onClick={(event) =>
+        learnBtnClickHandler(event, activeIndex, selectedIndex)
+      }
     >
       <span>Learn more</span>
       <ButtonArrow

@@ -73,7 +73,8 @@ const RevolutionBlock = ({ navigationHandler }) => {
                 size="lg"
                 color="blue"
                 navigationHandler={navigationHandler}
-                page="/revolution"
+                path="/revolution"
+                activeIndex={2}
               />
             </Grid>
           </Grid>

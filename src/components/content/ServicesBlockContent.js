@@ -5,7 +5,6 @@ import LearnMoreBtn from '../buttons/LearnMoreBtn';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/styles';
-import { useTheme } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   specialText: {
@@ -28,11 +27,13 @@ const ServicesBlockContent = ({
   subtitle1,
   subtitle2,
   navigationHandler,
-  page,
+  selectedMenuItemHandler,
+  path,
+  activeIndex,
+  selectedIndex,
   span = null,
 }) => {
   const classes = useStyles();
-  const theme = useTheme();
 
   const spanText = span ? (
     <span className={classes.specialText}>{span}</span>
@@ -53,7 +54,10 @@ const ServicesBlockContent = ({
           size="sm"
           color="blue"
           navigationHandler={navigationHandler}
-          page={page}
+          selectedMenuItemHandler={selectedMenuItemHandler}
+          activeIndex={activeIndex}
+          selectedIndex={selectedIndex}
+          path={path}
         />
       </Grid>
       <Grid item>

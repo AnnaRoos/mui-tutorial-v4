@@ -57,7 +57,8 @@ const InfoBlock = ({ navigationHandler }) => {
             size="sm"
             color="white"
             navigationHandler={navigationHandler}
-            page="/about"
+            path="/about"
+            activeIndex={3}
           />
         </Grid>
       </Grid>
@@ -80,7 +81,8 @@ const InfoBlock = ({ navigationHandler }) => {
             size="sm"
             color="white"
             navigationHandler={navigationHandler}
-            page="/contact"
+            path="/contact"
+            activeIndex={4}
           />
         </Grid>
       </Grid>

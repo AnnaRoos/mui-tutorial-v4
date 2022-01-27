@@ -14,14 +14,13 @@ const useStyles = makeStyles((theme) => ({
 
     minWidth: 10,
     marginLeft: '25px',
-    '&.Mui-selected': {},
   },
   tabs: {
     marginLeft: 'auto',
   },
 }));
 
-const Navigation = ({ navigationHandler, tabMenuOptions, value }) => {
+const Navigation = ({ navigationHandler, tabMenuOptions, activeIndex }) => {
   const classes = useStyles();
 
   const navigationTabs = pages
@@ -44,7 +43,7 @@ const Navigation = ({ navigationHandler, tabMenuOptions, value }) => {
   return (
     <Tabs
       className={classes.tabs}
-      value={value}
+      value={activeIndex}
       onChange={navigationHandler}
       indicatorColor="primary"
     >

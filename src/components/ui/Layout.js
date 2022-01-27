@@ -11,10 +11,10 @@ const Layout = ({
   openMenu,
   openMenuHandler,
   selectedIndex,
-  selectedMenuItemHandler,
   toggleDrawerHandler,
-  value,
+  activeIndex,
   children,
+  selectedMenuItemHandler,
 }) => {
   return (
     <>
@@ -26,9 +26,9 @@ const Layout = ({
         openMenu={openMenu}
         openMenuHandler={openMenuHandler}
         selectedIndex={selectedIndex}
-        selectedMenuItemHandler={selectedMenuItemHandler}
         toggleDrawerHandler={toggleDrawerHandler}
-        value={value}
+        activeIndex={activeIndex}
+        selectedMenuItemHandler={selectedMenuItemHandler}
       />
       {children}
       <Footer

@@ -8,14 +8,16 @@ import Layout from './components/ui/Layout';
 
 import { pages } from './config/pageConfig';
 import { theme } from './Theme';
+
 import HomePage from './pages/HomePage';
+import ServicesPage from './pages/ServicesPage';
 
 function App() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(null);
-  const [value, setValue] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const openMenuHandler = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,16 +33,11 @@ function App() {
     setOpenDrawer((prev) => !prev);
   };
 
-  const navigationHandler = (event, newValue = null) => {
-    if (event.target.id === 'logo') {
-      setValue(0);
-    } else {
-      setValue(newValue);
-    }
+  const navigationHandler = (event, activeIndex) => {
+    setActiveIndex(activeIndex);
   };
 
   const selectedMenuItemHandler = (index) => {
-    console.log(index);
     setAnchorEl(null);
     setOpenMenu(false);
     setSelectedIndex(index);
@@ -50,17 +47,17 @@ function App() {
     pages.forEach((page) => {
       if (
         window.location.pathname === page.path &&
-        value !== page.activeIndex
+        activeIndex !== page.activeIndex
       ) {
-        setValue(page.activeIndex);
+        setActiveIndex(page.activeIndex);
         if (page.selectedIndex && page.selectedIndex !== selectedIndex) {
           setSelectedIndex(page.selectedIndex);
         }
       }
     });
-  }, [value, selectedIndex]);
+  }, [activeIndex, selectedIndex]);
 
-  const pageRoutes = pages.slice(1, -1).map((page) => {
+  const pageRoutes = pages.slice(2, -1).map((page) => {
     return (
       <Route
         key={page.title}
@@ -84,14 +81,28 @@ function App() {
           selectedIndex={selectedIndex}
           selectedMenuItemHandler={selectedMenuItemHandler}
           toggleDrawerHandler={toggleDrawerHandler}
-          value={value}
+          activeIndex={activeIndex}
         >
           <Routes>
             <Route
-              key={'homePage'}
               exact
               path={'/'}
-              element={<HomePage navigationHandler={navigationHandler} />}
+              element={
+                <HomePage
+                  navigationHandler={navigationHandler}
+                  selectedMenuItemHandler={selectedMenuItemHandler}
+                />
+              }
+            />
+            <Route
+              exact
+              path={'/services'}
+              element={
+                <ServicesPage
+                  navigationHandler={navigationHandler}
+                  selectedMenuItemHandler={selectedMenuItemHandler}
+                />
+              }
             />
             {pageRoutes}
           </Routes>

@@ -71,7 +71,8 @@ const Hero = ({ navigationHandler }) => {
               size="lg"
               color="blue"
               navigationHandler={navigationHandler}
-              page="/"
+              path="/revolution"
+              activeIndex={2}
             />
           </Grid>
         </Grid>
