@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.estimate,
     borderRadius: '50px',
     height: '3rem',
-    width: '9rem',
+    minWidth: '9rem',
     margin: (position) => position.margin,
     '&:hover': {
       backgroundColor: theme.palette.secondary.light,

@@ -9,6 +9,7 @@ import Layout from './components/ui/Layout';
 import { pages } from './config/pageConfig';
 import { theme } from './Theme';
 
+import CustomSoftwarePage from './pages/CustomSoftwarePage';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
 
@@ -57,16 +58,20 @@ function App() {
     });
   }, [activeIndex, selectedIndex]);
 
-  const pageRoutes = pages.slice(2, -1).map((page) => {
-    return (
-      <Route
-        key={page.title}
-        exact
-        path={page.path}
-        element={page.page ? <page.page /> : <DummyPage text={page.title} />}
-      />
-    );
-  });
+  /*   const finishedPages = ['Home', 'Services', 'Custom Software'];
+
+  const pageRoutes = pages
+    .filter((page) => !finishedPages.includes(page.title))
+    .map((page) => {
+      return (
+        <Route
+          key={page.title}
+          exact
+          path={page.path}
+          element={page.page ? <page.page /> : <DummyPage text={page.title} />}
+        />
+      );
+    }); */
 
   return (
     <ThemeProvider theme={theme}>
@@ -104,7 +109,16 @@ function App() {
                 />
               }
             />
-            {pageRoutes}
+            <Route
+              exact
+              path={'/customsoftware'}
+              element={
+                <CustomSoftwarePage
+                  navigationHandler={navigationHandler}
+                  selectedMenuItemHandler={selectedMenuItemHandler}
+                />
+              }
+            />
           </Routes>
         </Layout>
       </BrowserRouter>

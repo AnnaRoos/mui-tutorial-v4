@@ -15,23 +15,21 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 0 1rem 0',
   },
   subtitle2: {
-    maxWidth: '34rem',
     margin: '0 0 1rem 0',
   },
 }));
 
 const ServicesBlockContent = ({
-  alt,
+  activeIndex,
   icon,
-  title,
+  navigationHandler,
+  path,
+  selectedIndex,
+  selectedMenuItemHandler,
+  span = null,
   subtitle1,
   subtitle2,
-  navigationHandler,
-  selectedMenuItemHandler,
-  path,
-  activeIndex,
-  selectedIndex,
-  span = null,
+  title,
 }) => {
   const classes = useStyles();
 
@@ -41,7 +39,7 @@ const ServicesBlockContent = ({
 
   return (
     <>
-      <Grid item>
+      <Grid className={classes.textContainer} item xl={6} lg={6} md={5}>
         <Typography variant="h4">{title}</Typography>
         <Typography className={classes.subtitle1} variant="subtitle1">
           {subtitle1}
@@ -61,7 +59,7 @@ const ServicesBlockContent = ({
         />
       </Grid>
       <Grid item>
-        <img alt={alt} src={icon} />
+        <img alt={`${title} icon`} src={icon} />
       </Grid>
     </>
   );

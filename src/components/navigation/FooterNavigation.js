@@ -10,6 +10,7 @@ import FooterLinkBox from './FooterLinkBox';
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     position: 'absolute',
+    width: '100vw',
   },
 }));
 

@@ -20,12 +20,6 @@ const useStyles = makeStyles((theme) => ({
       margin: '2rem 0 0 0',
     },
   },
-  serviceBlock: {
-    padding: '0 5rem 0 5rem',
-    [theme.breakpoints.down('sm')]: {
-      padding: '0',
-    },
-  },
 }));
 
 const HomePage = ({ navigationHandler, selectedMenuItemHandler }) => {
@@ -36,13 +30,10 @@ const HomePage = ({ navigationHandler, selectedMenuItemHandler }) => {
       <Grid item>
         <HeroBlock navigationHandler={navigationHandler} />
       </Grid>
-      <Grid className={classes.serviceBlock} item>
+      <Grid item>
         <ServicesBlock
           navigationHandler={navigationHandler}
           selectedMenuItemHandler={selectedMenuItemHandler}
-          middlePlacement="flex-end"
-          topBottomPlacement="flex-start"
-          position={{ margin: '8rem 0 0 0' }}
         />
       </Grid>
       <Grid item>

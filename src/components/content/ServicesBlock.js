@@ -10,23 +10,22 @@ import ServicesBlockContent from './ServicesBlockContent';
 import { pages } from '../../config/pageConfig';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    padding: '0 5rem 0 5rem',
+    [theme.breakpoints.down('sm')]: {
+      padding: '0',
+    },
+  },
   serviceContainer: {
-    margin: (position) => position.margin,
+    margin: '8rem 0 0 0',
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     },
   },
 }));
 
-const ServicesBlock = ({
-  navigationHandler,
-  selectedMenuItemHandler,
-  middlePlacement,
-  topBottomPlacement,
-  position,
-}) => {
-  const classes = useStyles(position);
+const ServicesBlock = ({ navigationHandler, selectedMenuItemHandler }) => {
+  const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -41,26 +40,22 @@ const ServicesBlock = ({
           item
           direction={matchesSM ? 'column' : 'row'}
           justifyContent={
-            matchesSM
-              ? 'center'
-              : index === 1
-              ? middlePlacement
-              : topBottomPlacement
+            matchesSM ? 'center' : index === 1 ? 'flex-end' : 'flex-start'
           }
           spacing={6}
           xs
         >
           <ServicesBlockContent
-            title={service.title}
-            subtitle1={service.servicesBlock.subtitle1}
-            subtitle2={service.servicesBlock.subtitle2}
-            span={service.servicesBlock.span}
+            activeIndex={service.activeIndex}
             icon={service.servicesBlock.icon}
             navigationHandler={navigationHandler}
-            selectedMenuItemHandler={selectedMenuItemHandler}
             path={service.path}
-            activeIndex={service.activeIndex}
             selectedIndex={service.selectedIndex}
+            selectedMenuItemHandler={selectedMenuItemHandler}
+            span={service.servicesBlock.span}
+            subtitle1={service.servicesBlock.subtitle1}
+            subtitle2={service.servicesBlock.subtitle2}
+            title={service.title}
           />
         </Grid>
       );

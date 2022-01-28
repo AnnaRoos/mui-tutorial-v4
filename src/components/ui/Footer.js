@@ -12,7 +12,7 @@ import footerAdornment from '../../assets/footerAdornment.svg';
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.common.arcBlue,
-    width: '100%',
+    width: '100vw',
     zIndex: 1302,
     position: 'relative',
   },
