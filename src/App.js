@@ -58,7 +58,7 @@ function App() {
     });
   }, [activeIndex, selectedIndex]);
 
-  /*   const finishedPages = ['Home', 'Services', 'Custom Software'];
+  const finishedPages = ['Home', 'Services', 'Custom Software'];
 
   const pageRoutes = pages
     .filter((page) => !finishedPages.includes(page.title))
@@ -71,7 +71,7 @@ function App() {
           element={page.page ? <page.page /> : <DummyPage text={page.title} />}
         />
       );
-    }); */
+    });
 
   return (
     <ThemeProvider theme={theme}>
@@ -119,6 +119,7 @@ function App() {
                 />
               }
             />
+            {pageRoutes}
           </Routes>
         </Layout>
       </BrowserRouter>
