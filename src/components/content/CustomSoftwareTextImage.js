@@ -4,27 +4,56 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 
+import Lottie from 'lottie-react';
+
 const useStyles = makeStyles((theme) => ({
   root: {},
   textContainer: {
     maxWidth: '20rem',
   },
+  img: { width: '25rem' },
+  animation: {
+    maxWidth: '20rem',
+  },
 }));
 
-const CustomSoftwareTextImage = ({ alt, heading, image, position, text }) => {
+const CustomSoftwareTextImage = ({
+  alt,
+  animation,
+  heading,
+  image,
+  position,
+  text,
+}) => {
   const classes = useStyles();
-  const imageContent = (
-    <Grid item>
-      <img alt={alt} src={image} style={{ width: '15rem' }} />
-    </Grid>
-  );
-  const textContent = text.map((paragraph) => (
-    <>
-      <Typography variant="body1" style={{ textAlign: position }}>
-        {paragraph}
-      </Typography>
-      <br />
-    </>
+
+  let imageContent;
+
+  if (image) {
+    imageContent = (
+      <Grid item>
+        <img className={classes.img} alt={alt} src={image} />
+      </Grid>
+    );
+  }
+
+  if (animation) {
+    imageContent = (
+      <Grid className={classes.animation} item>
+        <Lottie animationData={animation} autoplay loop />
+      </Grid>
+    );
+  }
+
+  const textContent = text.map((paragraph, index) => (
+    <Typography
+      key={`${paragraph.slice(0, 3)}-${index}`}
+      variant="body1"
+      style={{ textAlign: position }}
+      paragraph
+    >
+      {paragraph}
+    </Typography>
   ));
 
   return (

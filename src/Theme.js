@@ -31,6 +31,7 @@ export const theme = createMuiTheme({
       fontSize: '1rem',
       fontWeight: 700,
       textTransform: 'none',
+      color: 'white',
     },
     estimate: {
       fontFamily: 'Pacifico',
@@ -65,6 +66,11 @@ export const theme = createMuiTheme({
       fontWeight: 300,
       fontSize: '1.25rem',
       color: 'white',
+    },
+    body1: {
+      fontWeight: 300,
+      fontSize: '1.25rem',
+      color: arcGrey,
     },
   },
   overrides: {
