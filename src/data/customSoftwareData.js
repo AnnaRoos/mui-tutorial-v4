@@ -15,7 +15,7 @@ export const customSoftwareBlocks = [
       your communication, and help the Earth.`,
     ],
     animation: dataAnimation,
-    alt: 'Animation of boxes of documents on a phone',
+
     position: 'left',
   },
   {
@@ -24,7 +24,7 @@ export const customSoftwareBlocks = [
       `Whether you’re a large brand, just getting started, or taking off right now, 
     our application architecture ensures pain-free growth and reliability.`,
     ],
-    image: scaleAnimation,
+    animation: scaleAnimation,
     position: 'right',
   },
   {
@@ -47,7 +47,7 @@ export const customSoftwareBlocks = [
       `Increasing efficiency increases profits, leaving you more time to focus on 
       your business, not busywork.`,
     ],
-    image: autoAnimation,
+    animation: autoAnimation,
     position: 'left',
   },
   {

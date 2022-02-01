@@ -5,14 +5,21 @@ import Typography from '@material-ui/core/Typography';
 
 const HeaderIcon = ({ alt, header, image }) => {
   return (
-    <Grid item>
-      <Grid container item direction="column">
-        <Grid item>
-          <Typography variant="h4">{header}</Typography>
-          <Grid item>
-            <img alt={alt} src={image} />
-          </Grid>
-        </Grid>
+    <Grid
+      container
+      item
+      direction="column"
+      alignItems="center"
+      spacing={2}
+      md={4}
+      lg={3}
+      xl={3}
+    >
+      <Grid item>
+        <Typography variant="h4">{header}</Typography>
+      </Grid>
+      <Grid item>
+        <img alt={alt} src={image} />
       </Grid>
     </Grid>
   );

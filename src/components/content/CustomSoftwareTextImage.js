@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
   },
   img: { width: '25rem' },
   animation: {
-    maxWidth: '20rem',
+    maxWidth: '15rem',
+    maxHeight: '20rem',
   },
 }));
 
@@ -39,8 +40,13 @@ const CustomSoftwareTextImage = ({
 
   if (animation) {
     imageContent = (
-      <Grid className={classes.animation} item>
-        <Lottie animationData={animation} autoplay loop />
+      <Grid item>
+        <Lottie
+          animationData={animation}
+          autoplay
+          loop
+          style={{ height: '22rem', maxWidth: '17rem' }}
+        />
       </Grid>
     );
   }
@@ -58,8 +64,8 @@ const CustomSoftwareTextImage = ({
 
   return (
     <Grid
-      className={classes.root}
       container
+      item
       direction={position === 'center' ? 'column' : 'row'}
       alignItems={
         position === 'left'
@@ -71,25 +77,13 @@ const CustomSoftwareTextImage = ({
     >
       {position === 'right' || position === 'center' ? imageContent : null}
       <Grid item>
-        <Grid
-          container
-          direction="column"
-          alignItems={
-            position === 'left'
-              ? 'flex-start'
-              : position === 'right'
-              ? 'flex-end'
-              : 'center'
-          }
-        >
+        <Grid className={classes.textContainer} container direction="column">
           <Grid item>
             <Typography variant="h4" style={{ textAlign: position }}>
               {heading}
             </Typography>
           </Grid>
-          <Grid className={classes.textContainer} item>
-            {textContent}
-          </Grid>
+          <Grid item>{textContent}</Grid>
         </Grid>
       </Grid>
 
