@@ -12,6 +12,7 @@ import { theme } from './Theme';
 import CustomSoftwarePage from './pages/CustomSoftwarePage';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
+import MobileAppsPage from './pages/MobileAppsPage';
 
 function App() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -58,7 +59,12 @@ function App() {
     });
   }, [activeIndex, selectedIndex]);
 
-  const finishedPages = ['Home', 'Services', 'Custom Software'];
+  const finishedPages = [
+    'Home',
+    'Services',
+    'Custom Software',
+    'iOS/Android Apps',
+  ];
 
   const pageRoutes = pages
     .filter((page) => !finishedPages.includes(page.title))
@@ -114,6 +120,16 @@ function App() {
               path={'/customsoftware'}
               element={
                 <CustomSoftwarePage
+                  navigationHandler={navigationHandler}
+                  selectedMenuItemHandler={selectedMenuItemHandler}
+                />
+              }
+            />
+            <Route
+              exact
+              path={'/mobileapps'}
+              element={
+                <MobileAppsPage
                   navigationHandler={navigationHandler}
                   selectedMenuItemHandler={selectedMenuItemHandler}
                 />

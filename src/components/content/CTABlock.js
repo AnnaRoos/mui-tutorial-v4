@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       padding: '2rem',
     },
+    [theme.breakpoints.down('xs')]: {
+      padding: '1rem',
+    },
   },
   textContainer: {
     [theme.breakpoints.down('sm')]: {
@@ -73,7 +76,7 @@ const CTABlock = ({ navigationHandler }) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item>
+      <Grid className={classes.ctaBtn} item>
         <CTABtn navigationHandler={navigationHandler} />
       </Grid>
     </Grid>

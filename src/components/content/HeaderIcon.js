@@ -11,7 +11,7 @@ const HeaderIcon = ({ alt, header, image }) => {
       direction="column"
       alignItems="center"
       spacing={2}
-      md={4}
+      md={3}
       lg={3}
       xl={3}
     >

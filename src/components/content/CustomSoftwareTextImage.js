@@ -2,19 +2,19 @@ import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { useMediaQuery } from '@material-ui/core';
 
 import Lottie from 'lottie-react';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
-  textContainer: {
-    maxWidth: '20rem',
-  },
-  img: { width: '25rem' },
-  animation: {
-    maxWidth: '15rem',
-    maxHeight: '20rem',
+  textContainer: { maxWidth: '20rem' },
+  img: {
+    width: '25rem',
+    [theme.breakpoints.down('xs')]: {
+      width: '15rem',
+    },
   },
 }));
 
@@ -27,6 +27,9 @@ const CustomSoftwareTextImage = ({
   text,
 }) => {
   const classes = useStyles();
+  const theme = useTheme();
+
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   let imageContent;
 
@@ -45,7 +48,7 @@ const CustomSoftwareTextImage = ({
           animationData={animation}
           autoplay
           loop
-          style={{ height: '22rem', maxWidth: '17rem' }}
+          style={{ height: '22rem', width: '15rem' }}
         />
       </Grid>
     );
@@ -55,8 +58,8 @@ const CustomSoftwareTextImage = ({
     <Typography
       key={`${paragraph.slice(0, 3)}-${index}`}
       variant="body1"
-      style={{ textAlign: position }}
       paragraph
+      align={matchesXS || position === 'center' ? 'center' : position}
     >
       {paragraph}
     </Typography>
@@ -66,20 +69,18 @@ const CustomSoftwareTextImage = ({
     <Grid
       container
       item
-      direction={position === 'center' ? 'column' : 'row'}
-      alignItems={
-        position === 'left'
-          ? 'flex-start'
-          : position === 'right'
-          ? 'flex-end'
-          : 'center'
-      }
+      direction={matchesXS || position === 'center' ? 'column' : 'row'}
+      alignItems={matchesXS || position === 'center' ? 'center' : null}
+      spacing={matchesXS ? 2 : 0}
     >
       {position === 'right' || position === 'center' ? imageContent : null}
       <Grid item>
         <Grid className={classes.textContainer} container direction="column">
           <Grid item>
-            <Typography variant="h4" style={{ textAlign: position }}>
+            <Typography
+              variant="h4"
+              align={matchesXS || position === 'center' ? 'center' : position}
+            >
               {heading}
             </Typography>
           </Grid>

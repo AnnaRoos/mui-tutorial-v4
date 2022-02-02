@@ -1,14 +1,15 @@
 import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import { Hidden, useMediaQuery } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import { useMediaQuery } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/styles';
 
-import ArrowBtn from '../components/buttons/ArrowBtn';
 import CTABlock from '../components/content/CTABlock';
 import CustomSoftwareTextImage from '../components/content/CustomSoftwareTextImage';
+import HeaderIcon from '../components/content/HeaderIcon';
+import ServicesSubPageMainText from '../components/content/ServicesSubPageMainText';
 
 import {
   customSoftwareBlocks,
@@ -18,36 +19,22 @@ import {
 import lightbulb from '../assets/bulb.svg';
 import stopwatch from '../assets/stopwatch.svg';
 import cash from '../assets/cash.svg';
-import HeaderIcon from '../components/content/HeaderIcon';
-import { useTheme } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: { padding: '2rem 5rem 10rem 5rem' },
-  firstBlock: { margin: '0 0 10rem 0' },
-  secondBlock: { margin: '0 0 10rem 0' },
-  thirdBlock: { margin: '0 0 10rem 0' },
-  fourthBlock: { margin: '0 0 10rem 0' },
-  mainTextContainer: { maxWidth: '40rem' },
-  arrowLeftContainer: {
-    margin: '0.5rem 0.75rem 0 -3.5rem',
+  root: {
+    padding: '2rem 5rem 10rem 5rem',
+    [theme.breakpoints.down('sm')]: {
+      padding: '2rem 1rem 10rem 1rem',
+    },
   },
-  arrowRightContainer: {
-    margin: '0.5rem 0 0 0',
-  },
+  blockMargin: { marginBottom: '10rem' },
 }));
 
 const CustomSoftwarePage = ({ navigationHandler, selectedMenuItemHandler }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
-
-  const customSoftwareMainContent = customSoftwareMainText.map((para) => {
-    return (
-      <Typography key={para.slice(0, 4)} variant="body1" paragraph>
-        {para}
-      </Typography>
-    );
-  });
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const customSoftwareContent = customSoftwareBlocks.map((data) => {
     return (
@@ -80,69 +67,52 @@ const CustomSoftwarePage = ({ navigationHandler, selectedMenuItemHandler }) => {
   return (
     <Grid container direction="column">
       <Grid className={classes.root} container direction="column">
+        <ServicesSubPageMainText
+          backPath="/services"
+          forwardPath="/mobileapps"
+          heading="Custom Software Development"
+          mainText={customSoftwareMainText}
+          selectedIndexBack={0}
+          electedIndexForward={2}
+          selectedMenuItemHandler={selectedMenuItemHandler}
+        />
         <Grid
-          className={classes.firstBlock}
-          item
+          className={classes.blockMargin}
           container
-          direction="row"
-          justifyContent={matchesMD ? 'center' : null}
+          direction={matchesSM ? 'column' : 'row'}
+          justifyContent={matchesSM ? null : 'center'}
+          spacing={matchesSM ? 4 : 0}
+          alignItems={matchesSM ? 'center' : null}
         >
-          <Hidden mdDown>
-            <Grid className={classes.arrowLeftContainer} item>
-              <ArrowBtn
-                direction="back"
-                to="/services"
-                selectedIndex={0}
-                selectedMenuItemHandler={selectedMenuItemHandler}
-              />
-            </Grid>
-          </Hidden>
-
-          <Grid
-            className={classes.mainTextContainer}
-            item
-            container
-            direction="column"
-          >
-            <Grid item>
-              <Typography variant="h2">Custom Software Development</Typography>
-            </Grid>
-            <Grid item>{customSoftwareMainContent}</Grid>
-          </Grid>
-          <Hidden mdDown>
-            <Grid className={classes.arrowRightContainer} item>
-              <ArrowBtn
-                direction="forward"
-                to="/mobileapps"
-                selectedIndex={2}
-                selectedMenuItemHandler={selectedMenuItemHandler}
-              />
-            </Grid>
-          </Hidden>
-        </Grid>
-
-        <Grid className={classes.secondBlock} container justifyContent="center">
           {iconBlock}
         </Grid>
 
         <Grid
-          className={classes.thirdBlock}
+          className={classes.blockMargin}
           container
-          direction="row"
+          direction={matchesMD ? 'column' : 'row'}
           justifyContent="space-between"
+          alignItems={matchesMD ? 'center' : null}
+          spacing={matchesMD ? 10 : 0}
         >
           <Grid item>{customSoftwareContent[0]}</Grid>
           <Grid item>{customSoftwareContent[1]}</Grid>
         </Grid>
         <Grid
-          className={classes.fourthBlock}
+          className={classes.blockMargin}
           container
           direction="row"
           justifyContent="center"
         >
           <Grid item>{customSoftwareContent[2]}</Grid>
         </Grid>
-        <Grid container direction="row" justifyContent="space-between">
+        <Grid
+          container
+          direction={matchesMD ? 'column' : 'row'}
+          justifyContent="space-between"
+          alignItems={matchesMD ? 'center' : null}
+          spacing={matchesMD ? 10 : 0}
+        >
           <Grid item>{customSoftwareContent[3]}</Grid>
           <Grid item>{customSoftwareContent[4]}</Grid>
         </Grid>
