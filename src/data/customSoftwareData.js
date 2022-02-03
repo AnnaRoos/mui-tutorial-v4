@@ -15,7 +15,6 @@ export const customSoftwareBlocks = [
       your communication, and help the Earth.`,
     ],
     animation: dataAnimation,
-
     position: 'left',
   },
   {

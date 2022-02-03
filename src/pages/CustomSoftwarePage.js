@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/styles';
 
 import CTABlock from '../components/content/CTABlock';
-import CustomSoftwareTextImage from '../components/content/CustomSoftwareTextImage';
+import TextImageSmallBlock from '../components/content/TextImageSmallBlock';
 import HeaderIcon from '../components/content/HeaderIcon';
 import ServicesSubPageMainText from '../components/content/ServicesSubPageMainText';
 
@@ -38,7 +38,7 @@ const CustomSoftwarePage = ({ navigationHandler, selectedMenuItemHandler }) => {
 
   const customSoftwareContent = customSoftwareBlocks.map((data) => {
     return (
-      <CustomSoftwareTextImage
+      <TextImageSmallBlock
         animation={data.animation}
         alt={data.alt}
         heading={data.heading}

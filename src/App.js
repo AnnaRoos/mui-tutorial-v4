@@ -11,8 +11,9 @@ import { theme } from './Theme';
 
 import CustomSoftwarePage from './pages/CustomSoftwarePage';
 import HomePage from './pages/HomePage';
-import ServicesPage from './pages/ServicesPage';
 import MobileAppsPage from './pages/MobileAppsPage';
+import ServicesPage from './pages/ServicesPage';
+import WebsitesPage from './pages/WebsitesPage';
 
 function App() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -64,6 +65,7 @@ function App() {
     'Services',
     'Custom Software',
     'iOS/Android Apps',
+    'Websites',
   ];
 
   const pageRoutes = pages
@@ -130,6 +132,16 @@ function App() {
               path={'/mobileapps'}
               element={
                 <MobileAppsPage
+                  navigationHandler={navigationHandler}
+                  selectedMenuItemHandler={selectedMenuItemHandler}
+                />
+              }
+            />
+            <Route
+              exact
+              path={'/websites'}
+              element={
+                <WebsitesPage
                   navigationHandler={navigationHandler}
                   selectedMenuItemHandler={selectedMenuItemHandler}
                 />

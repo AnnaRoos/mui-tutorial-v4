@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ServicesSubPageMainText = ({
   backPath,
-  forwardPath,
+  forwardPath = null,
   heading,
   mainText,
   selectedIndexBack,
-  selectedIndexForward,
+  selectedIndexForward = null,
   selectedMenuItemHandler,
 }) => {
   const classes = useStyles();
@@ -45,6 +45,19 @@ const ServicesSubPageMainText = ({
       </Typography>
     );
   });
+
+  const forwardBtn = forwardPath ? (
+    <Hidden mdDown>
+      <Grid className={classes.arrowRightContainer} item>
+        <ArrowBtn
+          direction="forward"
+          to={forwardPath}
+          selectedIndex={selectedIndexForward}
+          selectedMenuItemHandler={selectedMenuItemHandler}
+        />
+      </Grid>
+    </Hidden>
+  ) : null;
 
   return (
     <Grid
@@ -78,16 +91,7 @@ const ServicesSubPageMainText = ({
         </Grid>
         <Grid item>{mainContent}</Grid>
       </Grid>
-      <Hidden mdDown>
-        <Grid className={classes.arrowRightContainer} item>
-          <ArrowBtn
-            direction="forward"
-            to={forwardPath}
-            selectedIndex={selectedIndexForward}
-            selectedMenuItemHandler={selectedMenuItemHandler}
-          />
-        </Grid>
-      </Hidden>
+      {forwardBtn}
     </Grid>
   );
 };

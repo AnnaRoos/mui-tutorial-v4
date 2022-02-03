@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CustomSoftwareTextImage = ({
+const TextImageSmallBlock = ({
   alt,
   animation,
   heading,
@@ -92,4 +92,4 @@ const CustomSoftwareTextImage = ({
     </Grid>
   );
 };
-export default CustomSoftwareTextImage;
+export default TextImageSmallBlock;
