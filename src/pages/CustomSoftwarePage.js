@@ -50,9 +50,19 @@ const CustomSoftwarePage = ({ navigationHandler, selectedMenuItemHandler }) => {
   });
 
   const iconBlock = [
-    { alt: 'lightbulb', header: 'Save Energy', image: lightbulb },
-    { alt: 'stopwatch', header: 'Save Time', image: stopwatch },
-    { alt: 'cash', header: 'Save Money', image: cash },
+    {
+      alt: 'lightbulb',
+      header: 'Save Energy',
+      image: lightbulb,
+      imageWidth: '5rem',
+    },
+    {
+      alt: 'stopwatch',
+      header: 'Save Time',
+      image: stopwatch,
+      imageWidth: '5rem',
+    },
+    { alt: 'cash', header: 'Save Money', image: cash, imageWidth: '5rem' },
   ].map((icon) => {
     return (
       <HeaderIcon
@@ -60,6 +70,7 @@ const CustomSoftwarePage = ({ navigationHandler, selectedMenuItemHandler }) => {
         alt={icon.alt}
         header={icon.header}
         image={icon.image}
+        imageWidth={icon.imageWidth}
       />
     );
   });

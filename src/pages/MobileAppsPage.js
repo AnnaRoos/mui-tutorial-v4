@@ -13,6 +13,9 @@ import HeaderIcon from '../components/content/HeaderIcon';
 import ServicesSubPageMainText from '../components/content/ServicesSubPageMainText';
 
 import integrationAnimation from '../animations/integrationAnimation/data.json';
+import extendAccess from '../assets/extendAccess.svg';
+import increaseEngagement from '../assets/increaseEngagement.svg';
+import swissKnife from '../assets/swissKnife.svg';
 
 import { mobileAppsMainText, mobileAppsBlocks } from '../data/mobileAppsData';
 
@@ -36,7 +39,7 @@ const MobileAppsPage = ({ navigationHandler, selectedMenuItemHandler }) => {
   const mobileAppsContent = mobileAppsBlocks.map((block) => {
     return (
       <Grid key={block.heading} container direction="column">
-        <Typography variant="h4" align={block.position}>
+        <Typography variant="h4" align={matchesMD ? 'center' : block.position}>
           {block.heading}
         </Typography>
         {block.text.map((para, index) => {
@@ -45,13 +48,44 @@ const MobileAppsPage = ({ navigationHandler, selectedMenuItemHandler }) => {
               key={`${para.slice(0, 5)}-${index}`}
               variant="body1"
               paragraph
-              align={block.position}
+              align={matchesMD ? 'center' : block.position}
             >
               {para}
             </Typography>
           );
         })}
       </Grid>
+    );
+  });
+
+  const iconBlock = [
+    {
+      alt: 'swiss knife',
+      header: 'Extend Functionality',
+      image: swissKnife,
+      imageWidth: '15rem',
+    },
+    {
+      alt: 'list',
+      header: 'Extend Access',
+      image: extendAccess,
+      imageWidth: '30rem',
+    },
+    {
+      alt: 'notification',
+      header: 'Increase Engagement',
+      image: increaseEngagement,
+      imageWidth: '15rem',
+    },
+  ].map((icon) => {
+    return (
+      <HeaderIcon
+        key={icon.alt}
+        alt={icon.alt}
+        header={icon.header}
+        image={icon.image}
+        imageWidth={icon.imageWidth}
+      />
     );
   });
 
@@ -68,13 +102,14 @@ const MobileAppsPage = ({ navigationHandler, selectedMenuItemHandler }) => {
           selectedMenuItemHandler={selectedMenuItemHandler}
         />
         <Grid
+          className={classes.blockMargin}
           container
           direction={matchesMD ? 'column' : 'row'}
           justifyContent="space-between"
           alignItems={matchesMD ? 'center' : null}
           spacing={matchesMD ? 10 : 0}
         >
-          <Grid item xl lg md={6} sm={7} xs>
+          <Grid item xl lg={4} md={6} sm={7} xs>
             {mobileAppsContent[0]}
           </Grid>
           <Lottie
@@ -83,11 +118,22 @@ const MobileAppsPage = ({ navigationHandler, selectedMenuItemHandler }) => {
             loop
             style={{ width: '18rem' }}
           />
-          <Grid item xl lg md={6} sm={7} xs>
+          <Grid item xl lg={4} md={6} sm={7} xs>
             {mobileAppsContent[1]}
           </Grid>
         </Grid>
+        <Grid
+          className={classes.blockMargin}
+          container
+          direction={matchesMD ? 'column' : 'row'}
+          justifyContent={matchesMD ? null : 'space-between'}
+          spacing={matchesMD ? 8 : 0}
+          alignItems={matchesMD ? 'center' : null}
+        >
+          {iconBlock}
+        </Grid>
       </Grid>
+
       <Grid item>
         <CTABlock navigationHandler={navigationHandler} />
       </Grid>
