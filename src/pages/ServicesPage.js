@@ -12,28 +12,26 @@ import { pages } from '../config/pageConfig';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: '5rem 0 0 0',
-    padding: '0 3rem 0 3rem',
+    padding: '2rem 5rem 0 5rem',
+    [theme.breakpoints.down('md')]: {
+      padding: '2rem 3rem 0 3rem',
+    },
     [theme.breakpoints.down('sm')]: {
-      padding: '0',
+      padding: '2rem 1rem 0 1rem',
     },
   },
   serviceContainer: {
-    margin: '0 0 3rem 0',
-    [theme.breakpoints.down('sm')]: {
-      textAlign: 'center',
-    },
+    margin: '5rem 0 3rem 0',
     '& img': {
       width: '12rem',
     },
   },
-  heading: { marginLeft: '24px' },
 }));
 
 const ServicesPage = ({ navigationHandler, selectedMenuItemHandler }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
 
   const mobileAppData = pages.filter(
     (page) => page.title === 'iOS/Android Apps'
@@ -53,13 +51,11 @@ const ServicesPage = ({ navigationHandler, selectedMenuItemHandler }) => {
         key={`${service.title}-servicesPage`}
         className={classes.serviceContainer}
         container
-        item
-        direction={matchesSM ? 'column' : 'row'}
+        direction={matchesMD ? 'column' : 'row'}
         justifyContent={
-          matchesSM ? 'center' : index === 1 ? 'flex-start' : 'flex-end'
+          matchesMD ? 'center' : index === 1 ? 'flex-start' : 'flex-end'
         }
-        spacing={6}
-        xs
+        alignItems={matchesMD ? 'center' : null}
       >
         <ServicesBlockContent
           activeIndex={service.activeIndex}
@@ -82,10 +78,12 @@ const ServicesPage = ({ navigationHandler, selectedMenuItemHandler }) => {
       className={classes.root}
       container
       direction="column"
-      alignItems={matchesSM ? 'center' : null}
+      alignItems={matchesMD ? 'center' : null}
     >
       <Grid className={classes.heading} item>
-        <Typography variant="h2">Services</Typography>
+        <Typography variant="h2" align={matchesMD ? 'center' : 'left'}>
+          Services
+        </Typography>
       </Grid>
       <Grid item>{services}</Grid>
     </Grid>

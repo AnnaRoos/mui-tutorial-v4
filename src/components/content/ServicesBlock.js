@@ -12,21 +12,22 @@ import { pages } from '../../config/pageConfig';
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: '0 5rem 0 5rem',
+    [theme.breakpoints.down('md')]: {
+      padding: '0 3rem 0 3rem',
+    },
     [theme.breakpoints.down('sm')]: {
-      padding: '0',
+      padding: '0 1rem 0 1rem',
     },
   },
   serviceContainer: {
     margin: '8rem 0 0 0',
-    [theme.breakpoints.down('sm')]: {
-      textAlign: 'center',
-    },
   },
 }));
 
 const ServicesBlock = ({ navigationHandler, selectedMenuItemHandler }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const services = pages
@@ -37,13 +38,11 @@ const ServicesBlock = ({ navigationHandler, selectedMenuItemHandler }) => {
           key={`${service.title}-landingPage`}
           className={classes.serviceContainer}
           container
-          item
-          direction={matchesSM ? 'column' : 'row'}
+          direction={matchesMD ? 'column' : 'row'}
           justifyContent={
-            matchesSM ? 'center' : index === 1 ? 'flex-end' : 'flex-start'
+            matchesMD ? 'center' : index === 1 ? 'flex-end' : 'flex-start'
           }
-          spacing={6}
-          xs
+          alignItems={matchesMD ? 'center' : null}
         >
           <ServicesBlockContent
             activeIndex={service.activeIndex}

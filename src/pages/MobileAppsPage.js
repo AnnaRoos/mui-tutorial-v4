@@ -22,6 +22,9 @@ import { mobileAppsMainText, mobileAppsBlocks } from '../data/mobileAppsData';
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: '2rem 5rem 10rem 5rem',
+    [theme.breakpoints.down('md')]: {
+      padding: '2rem 3rem 10rem 3rem',
+    },
     [theme.breakpoints.down('sm')]: {
       padding: '2rem 1rem 10rem 1rem',
     },

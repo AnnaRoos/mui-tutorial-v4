@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   img: {
     width: '20rem',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       width: '15rem',
     },
   },
@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
 const ImageTextSmallBlock = ({ alt, heading, image, position, text }) => {
   const classes = useStyles();
   const theme = useTheme();
-
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
+
   const textContent = text.map((paragraph, index) => (
     <Typography
       key={`${paragraph.slice(0, 3)}-${index}`}

@@ -9,7 +9,12 @@ import Lottie from 'lottie-react';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
-  textContainer: { maxWidth: '20rem' },
+  textContainer: {
+    maxWidth: '20rem',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '30rem',
+    },
+  },
   img: {
     width: '25rem',
     [theme.breakpoints.down('xs')]: {
@@ -29,7 +34,7 @@ const TextImageSmallBlock = ({
   const classes = useStyles();
   const theme = useTheme();
 
-  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   let imageContent;
 
@@ -59,7 +64,7 @@ const TextImageSmallBlock = ({
       key={`${paragraph.slice(0, 3)}-${index}`}
       variant="body1"
       paragraph
-      align={matchesXS || position === 'center' ? 'center' : position}
+      align={matchesSM || position === 'center' ? 'center' : position}
     >
       {paragraph}
     </Typography>
@@ -69,9 +74,9 @@ const TextImageSmallBlock = ({
     <Grid
       container
       item
-      direction={matchesXS || position === 'center' ? 'column' : 'row'}
-      alignItems={matchesXS || position === 'center' ? 'center' : null}
-      spacing={matchesXS ? 2 : 0}
+      direction={matchesSM || position === 'center' ? 'column' : 'row'}
+      alignItems={matchesSM || position === 'center' ? 'center' : null}
+      spacing={matchesSM ? 2 : 0}
     >
       {position === 'right' || position === 'center' ? imageContent : null}
       <Grid item>
@@ -79,7 +84,7 @@ const TextImageSmallBlock = ({
           <Grid item>
             <Typography
               variant="h4"
-              align={matchesXS || position === 'center' ? 'center' : position}
+              align={matchesSM || position === 'center' ? 'center' : position}
             >
               {heading}
             </Typography>

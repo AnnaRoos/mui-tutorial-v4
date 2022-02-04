@@ -4,9 +4,17 @@ import Grid from '@material-ui/core/Grid';
 import LearnMoreBtn from '../buttons/LearnMoreBtn';
 import Typography from '@material-ui/core/Typography';
 
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+  textContainer: {
+    maxWidth: '30rem',
+    margin: '0 2rem 0 0',
+    [theme.breakpoints.down('md')]: {
+      margin: '0 0 2rem 0',
+    },
+  },
   specialText: {
     fontFamily: 'Pacifico',
     color: theme.palette.common.arcOrange,
@@ -32,6 +40,8 @@ const ServicesBlockContent = ({
   title,
 }) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
 
   const spanText = span ? (
     <span className={classes.specialText}>{span}</span>
@@ -39,12 +49,27 @@ const ServicesBlockContent = ({
 
   return (
     <>
-      <Grid item xl={6} lg={6} md={5}>
-        <Typography variant="h4">{title}</Typography>
-        <Typography className={classes.subtitle1} variant="subtitle1">
+      <Grid
+        className={classes.textContainer}
+        container
+        direction="column"
+        alignItems={matchesMD ? 'center' : 'left'}
+      >
+        <Typography variant="h4" align={matchesMD ? 'center' : 'left'}>
+          {title}
+        </Typography>
+        <Typography
+          className={classes.subtitle1}
+          variant="subtitle1"
+          align={matchesMD ? 'center' : 'left'}
+        >
           {subtitle1}
         </Typography>
-        <Typography className={classes.subtitle2} variant="subtitle1">
+        <Typography
+          className={classes.subtitle2}
+          variant="subtitle1"
+          align={matchesMD ? 'center' : 'left'}
+        >
           {subtitle2}
           {spanText}
         </Typography>
@@ -58,6 +83,7 @@ const ServicesBlockContent = ({
           path={path}
         />
       </Grid>
+
       <Grid item>
         <img alt={`${title} icon`} src={icon} />
       </Grid>
