@@ -39,7 +39,7 @@ const ServicesBlockContent = ({
 
   return (
     <>
-      <Grid className={classes.textContainer} item xl={6} lg={6} md={5}>
+      <Grid item xl={6} lg={6} md={5}>
         <Typography variant="h4">{title}</Typography>
         <Typography className={classes.subtitle1} variant="subtitle1">
           {subtitle1}

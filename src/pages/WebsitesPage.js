@@ -16,10 +16,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: '2rem 5rem 10rem 5rem',
     [theme.breakpoints.down('sm')]: {
-      padding: '2rem 1rem 10rem 1rem',
+      padding: '2rem 1rem 5rem 1rem',
     },
   },
-  blockMargin: { marginBottom: '10rem' },
 }));
 
 const WebsitesPage = ({ navigationHandler, selectedMenuItemHandler }) => {
@@ -50,10 +49,7 @@ const WebsitesPage = ({ navigationHandler, selectedMenuItemHandler }) => {
           selectedIndexBack={2}
           selectedMenuItemHandler={selectedMenuItemHandler}
         />
-        <Grid item>{websitesContent[0]}</Grid>
-        <Grid item>{websitesContent[1]}</Grid>
-        <Grid item>{websitesContent[2]}</Grid>
-        <Grid item>{websitesContent[3]}</Grid>
+        {websitesContent}
       </Grid>
 
       <Grid item>

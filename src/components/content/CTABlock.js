@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100vw',
     padding: '5rem',
     backgroundImage: `url(${background})`,
-    backgroundAttachment: 'fixed',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -43,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CTABlock = ({ navigationHandler }) => {
+const CTABlock = ({ navigationHandler, fixed = true }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -54,6 +53,7 @@ const CTABlock = ({ navigationHandler }) => {
       direction={matchesSM ? 'column' : 'row'}
       alignItems="center"
       justifyContent={matchesSM ? 'space-evenly' : 'space-between'}
+      style={{ backgroundAttachment: fixed ? 'fixed' : null }}
     >
       <Grid item>
         <Grid className={classes.textContainer} container direction="column">

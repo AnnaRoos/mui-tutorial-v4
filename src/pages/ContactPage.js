@@ -13,20 +13,15 @@ import SendBtn from '../components/buttons/SendBtn';
 
 import background from '../assets/background.jpg';
 import mobileBackground from '../assets/mobileBackground.jpg';
+import CTABlock from '../components/content/CTABlock';
 
 const useStyles = makeStyles((theme) => ({
+  root: {},
   airplane: {
     marginLeft: '1rem',
   },
-  backgroundImg: {
-    backgroundImage: `url(${background})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'none',
-    height: '45rem',
-    [theme.breakpoints.down('sm')]: {
-      backgroundImage: `url(${mobileBackground})`,
-    },
+  cta: {
+    height: '100%',
   },
   contactContainer: {
     color: theme.palette.common.arcBlue,
@@ -208,7 +203,7 @@ const Contact = () => {
       onChange: inputChangeHandler,
       onFocus: inputFocusHandler,
       placeholder: 'Write your message',
-      rows: 10,
+      rows: 7,
       value: enteredMessage,
     },
   ];
@@ -290,14 +285,10 @@ const Contact = () => {
       >
         <ContactForm form={textFieldData} />
       </ContactDialog>
-      <Grid
-        className={classes.backgroundImg}
-        container
-        item
-        md={7}
-        lg={8}
-        xl={9}
-      ></Grid>
+
+      <Grid className={classes.cta} item md={7} lg={8} xl={9}>
+        <CTABlock fixed={false} />
+      </Grid>
     </Grid>
   );
 };
