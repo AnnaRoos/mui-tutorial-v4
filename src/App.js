@@ -12,6 +12,7 @@ import { theme } from './Theme';
 import CustomSoftwarePage from './pages/CustomSoftwarePage';
 import HomePage from './pages/HomePage';
 import MobileAppsPage from './pages/MobileAppsPage';
+import RevolutionPage from './pages/RevolutionPage';
 import ServicesPage from './pages/ServicesPage';
 import WebsitesPage from './pages/WebsitesPage';
 
@@ -66,6 +67,7 @@ function App() {
     'Custom Software',
     'iOS/Android Apps',
     'Websites',
+    'The Revolution',
   ];
 
   const pageRoutes = pages
@@ -146,6 +148,11 @@ function App() {
                   selectedMenuItemHandler={selectedMenuItemHandler}
                 />
               }
+            />
+            <Route
+              exact
+              path={'/revolution'}
+              element={<RevolutionPage navigationHandler={navigationHandler} />}
             />
             {pageRoutes}
           </Routes>
