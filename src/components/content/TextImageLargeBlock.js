@@ -8,7 +8,9 @@ import { useMediaQuery } from '@material-ui/core';
 import Lottie from 'lottie-react';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    marginBottom: '5rem',
+  },
   textContainer: {
     maxWidth: '40rem',
   },
@@ -71,10 +73,11 @@ const TextImageLargeBlock = ({
 
   return (
     <Grid
+      className={classes.root}
       container
       item
       direction={matchesMD ? 'column' : 'row'}
-      alignItems={'center'}
+      alignItems="center"
     >
       {position === 'right' || matchesMD ? imageContent : null}
 

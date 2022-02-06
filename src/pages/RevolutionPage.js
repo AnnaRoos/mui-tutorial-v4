@@ -14,7 +14,7 @@ import { revolutionMainBlocks, processBlocks } from '../data/revolutionData';
 import TextImageLargeBlock from '../components/content/TextImageLargeBlock';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: { paddingTop: '2rem' },
   rowContainer: {
     padding: '0 5rem 0 5rem',
 
@@ -27,8 +27,9 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     fontFamily: 'Pacifico',
-    margin: '2rem 0 3rem 0',
+    marginBottom: '5rem',
   },
+  processHeading: { marginBottom: '3rem' },
 }));
 
 const RevolutionPage = ({ navigationHandler }) => {
@@ -74,7 +75,11 @@ const RevolutionPage = ({ navigationHandler }) => {
           </Typography>
         </Grid>
         {largeTextContent}
-        <Grid container justifyContent="center">
+        <Grid
+          className={classes.processHeading}
+          container
+          justifyContent="center"
+        >
           <Grid item>
             <Typography variant="h4" gutterBottom>
               Process
