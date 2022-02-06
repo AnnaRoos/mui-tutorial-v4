@@ -1,6 +1,8 @@
 import visionImg from '../assets/vision.svg';
 import technologyAnimation from '../animations/technologyAnimation/data.json';
 
+import consultationIcon from '../assets/consultationIcon.svg';
+
 export const revolutionMainBlocks = [
   {
     heading: 'Vision',
@@ -50,5 +52,27 @@ export const revolutionMainBlocks = [
     animation: technologyAnimation,
     alt: 'hammer',
     position: 'left',
+  },
+];
+
+export const processBlocks = [
+  {
+    heading: 'Consultation',
+    text: [
+      `Our process begins the moment you realize you need a piece of technology 
+      for your business. Whether you already have an idea for where to start and
+      what to do, or if you just know you want to step things up, our initial
+      consultation will help you examine your business holistically to find the
+      best solutions.`,
+      `Detailed notes will be taken on your requirements and constraints, 
+      while taking care to identify other potential areas for consideration.`,
+      `Cutting-edge advancements in machine learning like object detection and 
+      natural language processing allow computers to do things previously
+      unimaginable, and our expertise and intuition will help usher you into
+      this new future of possibilities.`,
+    ],
+    backgroundColor: '#B3B3B3',
+    alt: 'handshake',
+    image: consultationIcon,
   },
 ];

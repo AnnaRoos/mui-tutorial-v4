@@ -37,7 +37,6 @@ const MobileAppsPage = ({ navigationHandler, selectedMenuItemHandler }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
-  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const mobileAppsContent = mobileAppsBlocks.map((block) => {
     return (

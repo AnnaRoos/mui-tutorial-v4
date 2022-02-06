@@ -10,10 +10,10 @@ import Lottie from 'lottie-react';
 const useStyles = makeStyles((theme) => ({
   root: {},
   textContainer: {
-    maxWidth: '50%',
+    maxWidth: '40rem',
   },
   img: {
-    width: '100%',
+    maxWidth: '40rem',
   },
 }));
 
@@ -34,7 +34,7 @@ const TextImageLargeBlock = ({
 
   if (image) {
     imageContent = (
-      <Grid item xl={6} lg={6}>
+      <Grid item lg>
         <img className={classes.img} alt={alt} src={image} />
       </Grid>
     );
@@ -42,12 +42,17 @@ const TextImageLargeBlock = ({
 
   if (animation) {
     imageContent = (
-      <Grid item lg={6}>
+      <Grid
+        item
+        container
+        lg
+        justifyContent={matchesMD ? 'center' : 'flex-end'}
+      >
         <Lottie
           animationData={animation}
           autoplay
           loop
-          style={{ width: '100%' }}
+          style={{ maxWidth: '40rem', margin: 0 }}
         />
       </Grid>
     );
@@ -70,21 +75,29 @@ const TextImageLargeBlock = ({
       item
       direction={matchesMD ? 'column' : 'row'}
       alignItems={'center'}
-      spacing={4}
     >
-      {position === 'right' ? imageContent : null}
-      <Grid item xl={6} lg={6}>
-        <Grid container direction="column">
-          <Grid item>
-            <Typography variant="h4" align={matchesMD ? 'center' : position}>
-              {heading}
-            </Typography>
-          </Grid>
-          <Grid item>{textContent}</Grid>
+      {position === 'right' || matchesMD ? imageContent : null}
+
+      <Grid
+        className={classes.textContainer}
+        container
+        item
+        direction="column"
+        lg
+      >
+        <Grid item>
+          <Typography
+            variant="h4"
+            gutterBottom
+            align={matchesMD ? 'center' : position}
+          >
+            {heading}
+          </Typography>
         </Grid>
+        <Grid item>{textContent}</Grid>
       </Grid>
 
-      {position === 'left' ? imageContent : null}
+      {position === 'left' && !matchesMD ? imageContent : null}
     </Grid>
   );
 };
