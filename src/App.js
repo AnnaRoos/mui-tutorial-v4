@@ -9,6 +9,7 @@ import Layout from './components/ui/Layout';
 import { pages } from './config/pageConfig';
 import { theme } from './Theme';
 
+import AboutPage from './pages/AboutPage';
 import CustomSoftwarePage from './pages/CustomSoftwarePage';
 import HomePage from './pages/HomePage';
 import MobileAppsPage from './pages/MobileAppsPage';
@@ -60,28 +61,6 @@ function App() {
       }
     });
   }, [activeIndex, selectedIndex]);
-
-  const finishedPages = [
-    'Home',
-    'Services',
-    'Custom Software',
-    'iOS/Android Apps',
-    'Websites',
-    'The Revolution',
-  ];
-
-  const pageRoutes = pages
-    .filter((page) => !finishedPages.includes(page.title))
-    .map((page) => {
-      return (
-        <Route
-          key={page.title}
-          exact
-          path={page.path}
-          element={page.page ? <page.page /> : <DummyPage text={page.title} />}
-        />
-      );
-    });
 
   return (
     <ThemeProvider theme={theme}>
@@ -154,7 +133,11 @@ function App() {
               path={'/revolution'}
               element={<RevolutionPage navigationHandler={navigationHandler} />}
             />
-            {pageRoutes}
+            <Route
+              exact
+              path={'/about'}
+              element={<AboutPage navigationHandler={navigationHandler} />}
+            />
           </Routes>
         </Layout>
       </BrowserRouter>

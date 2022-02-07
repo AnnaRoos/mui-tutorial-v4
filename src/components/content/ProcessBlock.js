@@ -14,10 +14,10 @@ const useStyles = makeStyles((theme) => ({
     padding: '5rem',
     [theme.breakpoints.down('md')]: {
       padding: '3rem',
+      height: '80rem',
     },
     [theme.breakpoints.down('sm')]: {
-      padding: '1rem',
-      height: '80rem',
+      padding: '3rem 1rem',
     },
     [theme.breakpoints.down('xs')]: {
       height: '100rem',
@@ -27,15 +27,17 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '20rem',
     [theme.breakpoints.down('md')]: {
       maxWidth: '40rem',
+      marginBottom: '5rem',
     },
   },
   heading: { color: 'black' },
   para: { color: 'white' },
   img: {
     maxWidth: '50rem',
+    maxHeight: '50rem',
     [theme.breakpoints.down('md')]: {
       maxWidth: '40rem',
-      maxHeight: '30rem',
+      maxHeight: '40rem',
     },
     [theme.breakpoints.down('sm')]: {
       maxWidth: '30rem',
@@ -75,14 +77,13 @@ const ProcessBlock = (props) => {
       container
       direction={matchesMD ? 'column' : 'row'}
       alignItems={matchesMD ? 'center' : null}
-      justifyContent={matchesMD ? 'space-around' : null}
     >
       <Grid
         className={classes.textContainer}
         container
         item
         direction="column"
-        md
+        lg
       >
         <Grid item>
           <Typography
@@ -96,7 +97,7 @@ const ProcessBlock = (props) => {
         </Grid>
         {textContent}
       </Grid>
-      <Grid container item justifyContent="center" alignItems="center" md>
+      <Grid container item justifyContent="center" alignItems="center" lg>
         <Grid item>
           <img className={classes.img} alt={alt} src={image} />
         </Grid>

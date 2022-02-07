@@ -12,44 +12,63 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '5rem',
   },
   textContainer: {
-    maxWidth: '40rem',
+    maxWidth: '60rem',
+    [theme.breakpoints.down('lg')]: {
+      maxWidth: '40rem',
+    },
   },
   img: {
-    maxWidth: '40rem',
+    maxWidth: '60rem',
+    [theme.breakpoints.down('lg')]: {
+      maxWidth: '40rem',
+    },
+  },
+  subheading: {
+    fontWeight: 700,
+    fontStyle: 'italic',
   },
 }));
 
 const TextImageLargeBlock = ({
   alt,
-  animation,
+  animation = null,
   heading,
-  image,
+  image = null,
   position,
+  subheading = null,
   text,
 }) => {
   const classes = useStyles();
   const theme = useTheme();
-
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
 
-  let imageContent;
-
-  if (image) {
-    imageContent = (
-      <Grid item lg>
-        <img className={classes.img} alt={alt} src={image} />
+  let subheadingContent;
+  if (subheading) {
+    subheadingContent = (
+      <Grid item>
+        <Typography
+          className={classes.subheading}
+          variant="body1"
+          gutterBottom
+          align={matchesMD ? 'center' : position}
+        >
+          {subheading}
+        </Typography>
       </Grid>
     );
   }
 
+  let imageContent;
+  if (image) {
+    imageContent = (
+      <Grid item container lg justifyContent="center">
+        <img className={classes.img} alt={alt} src={image} />
+      </Grid>
+    );
+  }
   if (animation) {
     imageContent = (
-      <Grid
-        item
-        container
-        lg
-        justifyContent={matchesMD ? 'center' : 'flex-end'}
-      >
+      <Grid item container lg justifyContent="center">
         <Lottie
           animationData={animation}
           autoplay
@@ -97,6 +116,7 @@ const TextImageLargeBlock = ({
             {heading}
           </Typography>
         </Grid>
+        {subheadingContent}
         <Grid item>{textContent}</Grid>
       </Grid>
 
