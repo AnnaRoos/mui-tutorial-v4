@@ -22,6 +22,15 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('lg')]: {
       maxWidth: '40rem',
     },
+    [theme.breakpoints.down('md')]: {
+      marginBottom: '5rem',
+    },
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '30rem',
+    },
+    [theme.breakpoints.down('xs')]: {
+      maxWidth: '20rem',
+    },
   },
   subheading: {
     fontWeight: 700,

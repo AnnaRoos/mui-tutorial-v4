@@ -1,4 +1,7 @@
+import founderImg from '../assets/founder.jpg';
 import historyImg from '../assets/history.svg';
+import puppyImg from '../assets/puppy.svg';
+import yearbookImg from '../assets/yearbook.svg';
 
 export const introText = `Whether it be person to person, business to consumer, or an individual to 
 their interests, technology is meant to bring us closer to what we care about in the best way
@@ -32,11 +35,11 @@ export const teamText = {
     `I taught myself basic coding from a library book in third grade, and ever
 since then my passion has solely been set on learning — learning about computers,
 learning mathematics and philosophy, studying design, always just learning.`,
-    `Now I’m ready to apply everything I’ve learned, and to help others with the`,
+    `Now I’m ready to apply everything I’ve learned, and to help others with their goals.`,
   ],
-};
-
-export const captions = {
+  founderImg: founderImg,
+  imgLeft: yearbookImg,
+  imgRight: puppyImg,
   captionLeft: `A page from my Sophomore yearbook.`,
   captionRight: `My miniature dapple dachshund, Sterling.`,
 };
