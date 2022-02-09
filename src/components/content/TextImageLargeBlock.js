@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: '30rem',
     },
     [theme.breakpoints.down('xs')]: {
-      maxWidth: '20rem',
+      maxWidth: '15rem',
     },
   },
   subheading: {

@@ -72,6 +72,11 @@ export const theme = createMuiTheme({
       fontSize: '1.25rem',
       color: arcGrey,
     },
+    caption: {
+      fontWeight: 300,
+      fontSize: '1rem',
+      color: arcGrey,
+    },
   },
   overrides: {
     MuiInputLabel: {
