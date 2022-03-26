@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import DummyPage from './pages/DummyPage';
 import Layout from './components/ui/Layout';
 
 import { pages } from './config/pageConfig';
@@ -11,6 +10,7 @@ import { theme } from './Theme';
 
 import AboutPage from './pages/AboutPage';
 import CustomSoftwarePage from './pages/CustomSoftwarePage';
+import EstimatePage from './pages/EstimatePage';
 import HomePage from './pages/HomePage';
 import MobileAppsPage from './pages/MobileAppsPage';
 import RevolutionPage from './pages/RevolutionPage';
@@ -138,6 +138,7 @@ function App() {
               path={'/about'}
               element={<AboutPage navigationHandler={navigationHandler} />}
             />
+            <Route exact path={'/estimate'} element={<EstimatePage />} />
           </Routes>
         </Layout>
       </BrowserRouter>

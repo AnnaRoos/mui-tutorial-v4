@@ -53,7 +53,7 @@ const ServicesBlockContent = ({
         className={classes.textContainer}
         container
         direction="column"
-        alignItems={matchesMD ? 'center' : 'left'}
+        alignItems={matchesMD ? 'center' : 'flex-start'}
       >
         <Typography variant="h4" align={matchesMD ? 'center' : 'left'}>
           {title}
